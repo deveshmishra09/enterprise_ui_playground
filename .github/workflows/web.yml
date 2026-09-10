@@ -1,0 +1,21 @@
+name: web
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - run: flutter pub get
+      # Legacy demo code under lib/flows/** carries pre-existing lint warnings;
+      # fail the build only on real errors.
+      - run: flutter analyze --no-fatal-warnings
+      - run: flutter test
+      - run: flutter build web --release

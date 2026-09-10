@@ -1,0 +1,4 @@
+# SPA fallback so deep links (e.g. /flows/content/drawing) resolve on a hard
+# refresh. Bundled into build/web by `flutter build web`.
+# Used by Netlify and Cloudflare Pages. Firebase uses firebase.json instead.
+/*  /index.html  200

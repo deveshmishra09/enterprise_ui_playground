@@ -1,0 +1,44 @@
+%% Enterprise UI Playground - landing page (/) widget composition
+graph TD
+    LP["LandingPage (route '/')"]
+    LP --> PS["PageScaffold"]
+    PS --> H["SiteHeader (variant: defaultNav) - FIXED"]
+    PS --> Body["SingleChildScrollView"]
+    PS --> F["SiteFooter"]
+
+    H --> Brand["Logo + 'Enterprise UI Playground'"]
+    H --> Nav["Flows | Pricing | FAQ  (menu < 1024)"]
+    H --> Right["ThemeToggleButton + profile icon"]
+
+    Body --> S2["IntroSection (Slot 2)"]
+    Body --> S3["FlowsSection (Slot 3)"]
+    Body --> S4["PricingSection (Slot 4)"]
+    Body --> S5["FaqSection (Slot 5)"]
+    Body --> S6["SocialCtaSection (Slot 6)"]
+
+    S2 --> S2a["Col 1: 'BUILT WITH FLUTTER' + HighlightedText headline"]
+    S2 --> S2b["Col 2: animation placeholder (empty)"]
+
+    S3 --> S3a["SectionHeading 'Explore the flows'"]
+    S3 --> S3b["ResponsiveGrid 1/2/3 -> FlowCard x6 (from kAllFlows)"]
+
+    S4 --> S4a["'PRICING' eyebrow (primary)"]
+    S4 --> S4b["3-line statement + sub-line"]
+    S4 --> S4c["PricingCard(free) + PricingCard(plus)"]
+
+    S5 --> S5a["SectionHeading 'Have any questions?'"]
+    S5 --> S5b["FaqTile x5 + dividers (accordion)"]
+
+    S6 --> S6a["'Still have a question? ' + TextButton 'Get in touch' -> /contact"]
+
+    F --> Fc1["PRODUCT: Flows / Pricing / FAQ (scroll)"]
+    F --> Fc2["CONNECT: Support / Contact / Follow on X"]
+    F --> Fc3["LEGAL: Privacy / Terms"]
+    F --> Fc4["(c) 2026 ... @deveshmishra_09 (link)"]
+
+    MW["MaxWidthContainer wraps every section body"]
+    S2 -.-> MW
+    S3 -.-> MW
+    S4 -.-> MW
+    S5 -.-> MW
+    S6 -.-> MW

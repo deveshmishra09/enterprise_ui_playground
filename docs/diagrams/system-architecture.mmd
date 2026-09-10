@@ -1,0 +1,50 @@
+%% Enterprise UI Playground - system / layered architecture
+graph TD
+    subgraph Entry
+        main["main.dart<br/>runApp, usePathUrlStrategy()"]
+        app["app.dart<br/>ThemeScope + MaterialApp.router"]
+        main --> app
+    end
+
+    app --> router["router/app_router.dart<br/>GoRouter (7 routes)"]
+
+    subgraph Features["lib/features/*"]
+        landing["landing/<br/>landing_page + 5 sections"]
+        flowdetail["flow_detail/<br/>flow_detail_page"]
+        editor["subflow_editor/<br/>editor_page + list panel"]
+        contact["contact/"]
+        legal["support/ privacy/ terms/"]
+    end
+
+    router --> landing
+    router --> flowdetail
+    router --> editor
+    router --> contact
+    router --> legal
+
+    subgraph Core["lib/core/*"]
+        theme["theme/<br/>AppColors #af3a4a, AppTheme,<br/>AppText, AppSpacing, ThemeController"]
+        constants["constants/<br/>app_strings, app_links, breakpoints"]
+        models["models/<br/>Flow, SubFlow, FaqItem, PricingPlan"]
+        data["data/<br/>flows_data (6/71), faq_data, pricing_data"]
+        widgets["widgets/<br/>SiteHeader, SiteFooter, PageScaffold,<br/>ResponsiveLayout, MaxWidthContainer,<br/>ThemeToggleButton, DeviceFramePreview,<br/>ComingSoonScreen, HighlightedText"]
+    end
+
+    landing --> widgets
+    flowdetail --> widgets
+    editor --> widgets
+    contact --> widgets
+    legal --> widgets
+
+    landing --> data
+    flowdetail --> data
+    editor --> data
+    data --> models
+    widgets --> theme
+    widgets --> constants
+
+    editor --> demos["lib/flows/**<br/>existing demo screens (unchanged)"]
+    data -. screenBuilder refs .-> demos
+
+    classDef core fill:#f6f6f5,stroke:#af3a4a;
+    class theme,constants,models,data,widgets core;

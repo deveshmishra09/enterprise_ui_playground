@@ -1,20 +1,23 @@
-import 'package:enterprise_ui_playground/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'package:enterprise_ui_playground/app.dart';
+import 'package:enterprise_ui_playground/core/theme/theme_controller.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Enterpsise UI Playground',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: const Color.fromARGB(255, 22, 8, 222))),
-      home: const AppRouter(),
-    );
-  }
+  // Clean path URLs (no `#`). Needs an SPA rewrite on the host — see
+  // docs/10-deployment.md. No-op on non-web platforms.
+  usePathUrlStrategy();
+
+  final prefs = await SharedPreferences.getInstance();
+
+  runApp(
+    ThemeScope(
+      controller: ThemeController(prefs),
+      child: const EnterpriseUiPlaygroundApp(),
+    ),
+  );
 }

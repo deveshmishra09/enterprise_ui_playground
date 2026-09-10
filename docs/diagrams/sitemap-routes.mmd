@@ -1,0 +1,27 @@
+%% Enterprise UI Playground - sitemap and go_router routes
+graph TD
+    Root["/"]:::route
+    Root --> Slots["Landing slots 1-7<br/>(single scroll)"]
+    Slots --> Anchors["#flows  #pricing  #faq<br/>(smooth scroll, header offset)"]
+
+    Root --> FlowDetail["/flows/:flowSlug"]:::route
+    FlowDetail --> Editor["/flows/:flowSlug/:subFlowSlug"]:::route
+
+    Root --> Contact["/contact"]:::route
+    Root --> Support["/support"]:::route
+    Root --> Privacy["/privacy"]:::route
+    Root --> Terms["/terms"]:::route
+    Root --> NotFound["*  ->  redirect /"]:::route
+
+    Editor --> Frame["DeviceFramePreview<br/>renders subflow (built) or ComingSoon"]
+
+    X["x.com/deveshmishra_09"]:::ext
+    Mail["mailto:devesh09269@gmail.com"]:::ext
+    Contact --> X
+    Contact --> Mail
+    Support --> Contact
+    Privacy -.same shell.-> Contact
+    Terms -.same shell.-> Contact
+
+    classDef route fill:#fff,stroke:#af3a4a,stroke-width:2px;
+    classDef ext fill:#f6f6f5,stroke:#8a8a8a,stroke-dasharray:4 3;

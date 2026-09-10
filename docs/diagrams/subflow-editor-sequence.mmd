@@ -1,0 +1,29 @@
+%% Enterprise UI Playground - opening a subflow in the device frame
+sequenceDiagram
+    actor U as Visitor
+    participant R as GoRouter
+    participant E as SubflowEditorPage
+    participant D as flows_data (kAllFlows)
+    participant F as DeviceFramePreview
+    participant S as Subflow screen (lib/flows/**)
+
+    U->>R: navigate /flows/account-management/logging-in
+    R->>D: flowBySlug + subFlowBySlug
+    D-->>R: Flow + SubFlow(status, screenBuilder)
+    R->>E: build with flow + subflow params
+    E->>E: render SubflowListPanel (20% width, active = logging-in)
+    alt status == built
+        E->>F: DeviceFramePreview(child: screenBuilder(context))
+        F->>F: MediaQuery override (390x844, dpr, safe areas, textScaler 1.0)
+        F->>F: clean Theme + nested Navigator (GlobalKey)
+        F->>S: mount screen
+        S-->>U: live UI inside phone frame
+        U->>S: tap -> Navigator.push / showModalBottomSheet
+        S->>S: navigation stays inside frame
+    else status == comingSoon
+        E->>F: DeviceFramePreview(child: ComingSoonScreen(...))
+        F-->>U: "Coming soon" + flow / subflow name
+    end
+    U->>E: tap another list item
+    E->>R: context.go(.../switching-account)
+    R->>E: rebuild, frame swaps child, URL + back-button updated

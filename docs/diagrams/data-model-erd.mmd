@@ -1,0 +1,38 @@
+%% Enterprise UI Playground - data model
+erDiagram
+    FLOW ||--|{ SUBFLOW : contains
+    FLOW {
+        string slug PK "kebab-case, URL segment"
+        string title
+        IconData icon
+        string blurb "TODO copy"
+        int count "derived = subFlows.length"
+    }
+    SUBFLOW {
+        string slug PK "unique within flow"
+        string title
+        enum status "built | comingSoon"
+        WidgetBuilder screenBuilder "non-null iff built"
+    }
+
+    PRICING_PLAN {
+        string name "Free | Plus"
+        string priceLabel "TODO"
+        string cadenceLabel "TODO"
+        string tagline "TODO"
+        list features "TODO"
+        string ctaLabel "TODO"
+        enum variant "free | plus"
+    }
+
+    FAQ_ITEM {
+        string question "TODO"
+        string answer "TODO"
+    }
+
+    APP_DATA ||--|{ FLOW : "kAllFlows (6)"
+    APP_DATA ||--|{ PRICING_PLAN : "kFreePlan, kPlusPlan"
+    APP_DATA ||--|{ FAQ_ITEM : "kFaqItems (5)"
+    APP_DATA {
+        string note "all in lib/core/data/*"
+    }

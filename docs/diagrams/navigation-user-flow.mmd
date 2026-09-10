@@ -1,0 +1,30 @@
+%% Enterprise UI Playground - primary user journey
+flowchart TD
+    Land["Land on /"] --> Scroll{Explore}
+    Scroll -->|Header: Flows| FlowsSlot["Slot 3 grid"]
+    Scroll -->|Header: Pricing| PricingSlot["Slot 4"]
+    Scroll -->|Header: FAQ| FaqSlot["Slot 5"]
+    Scroll -->|Theme toggle| ThemeSwitch["light <-> dark (persisted)"]
+
+    FlowsSlot -->|tap flow card| FlowDetail["/flows/:flowSlug<br/>subflow grid"]
+    FlowDetail -->|tap subflow card| Editor["/flows/:flowSlug/:subFlowSlug"]
+
+    Editor --> List["Left rail: all subflows in flow"]
+    List -->|select item| Editor
+    Editor --> Preview["Right: live device frame"]
+    Preview -->|built| RealScreen["Real Flutter demo runs in frame"]
+    Preview -->|coming soon| ComingSoon["ComingSoonScreen"]
+    RealScreen -->|push / bottom sheet| RealScreen
+
+    FaqSlot -->|tap question| Expand["Accordion expands answer"]
+    Scroll -->|Slot 6 CTA 'Get in touch'| Contact["/contact"]
+    Contact -->|EMAIL| Mail["mailto"]
+    Contact -->|FOLLOW| XLink["x.com/deveshmishra_09"]
+
+    Land -->|Footer| Footer{Footer links}
+    Footer -->|Product| FlowsSlot
+    Footer -->|Support| Support["/support"]
+    Footer -->|Contact| Contact
+    Footer -->|Privacy| Privacy["/privacy"]
+    Footer -->|Terms| Terms["/terms"]
+    Footer -->|Follow on X| XLink
