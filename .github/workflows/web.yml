@@ -14,9 +14,10 @@ jobs:
         with:
           channel: stable
       - run: flutter pub get
-      # Legacy demo code under lib/flows/** carries pre-existing lint warnings;
-      # fail the build only on real errors.
-      - run: flutter analyze --no-fatal-warnings
+      # Legacy demo code under lib/flows/** carries pre-existing warning- and
+      # info-level lints (this Flutter version treats both as fatal by
+      # default); fail the build only on real errors.
+      - run: flutter analyze --no-fatal-warnings --no-fatal-infos
       - run: flutter test
       - run: flutter build web --release
       # Only publish on real pushes to main — PR builds still run the steps

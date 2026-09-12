@@ -70,6 +70,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
         status: SubFlowStatus.built,
         screenBuilder: _deleteAccountScreen,
       ),
+      SubFlow(slug: 'switching-account', title: 'Switching Account'),
     ],
   ),
   AppFlow(
