@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/commerce_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:flutter/material.dart';
 
 class TourDetailsScreen extends StatefulWidget {
@@ -256,12 +256,7 @@ class _TourDetailsScreenState extends State<TourDetailsScreen> {
               height: 48,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CommerceManagementScreen(),
-                    ),
-                  );
+                  SubflowResetScope.maybeOf(context)?.reset();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, // Distinct Redfin Crimson Red

@@ -25,7 +25,7 @@ class FlowCard extends StatelessWidget {
         side: BorderSide(color: Theme.of(context).dividerColor),
       ),
       child: InkWell(
-        onTap: () => context.go('/flows/${flow.slug}'),
+        onTap: () => context.push('/flows/${flow.slug}'),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(

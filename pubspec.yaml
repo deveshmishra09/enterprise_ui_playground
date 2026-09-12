@@ -79,12 +79,13 @@ flutter:
     - lib/core/mock_data/profile_images/profile_6.jpg
     - lib/core/mock_data/profile_images/profile_7.jpg
     - lib/flows/02_commerce&finance/listing/assets/images/layoffs.png
-    - lib/flows/02_commerce&finance/boopking&reserving/assets/images/img1.jpg
-    - lib/flows/02_commerce&finance/boopking&reserving/assets/images/img2.jpg
-    - lib/flows/02_commerce&finance/boopking&reserving/assets/images/img3.jpg
-    - lib/flows/02_commerce&finance/boopking&reserving/assets/images/img4.jpg
-    - lib/flows/02_commerce&finance/boopking&reserving/assets/images/img5.jpg
+    - lib/flows/02_commerce&finance/booking&reserving/assets/images/img1.jpg
+    - lib/flows/02_commerce&finance/booking&reserving/assets/images/img2.jpg
+    - lib/flows/02_commerce&finance/booking&reserving/assets/images/img3.jpg
+    - lib/flows/02_commerce&finance/booking&reserving/assets/images/img4.jpg
+    - lib/flows/02_commerce&finance/booking&reserving/assets/images/img5.jpg
     - assets/images/product.webp
+    - assets/images/dashboard_hero.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

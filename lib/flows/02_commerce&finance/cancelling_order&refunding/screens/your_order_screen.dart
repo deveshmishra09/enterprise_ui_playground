@@ -1,6 +1,6 @@
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_order&refunding/widgets/custom_bottom_nav.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_order&refunding/widgets/top_searchbar.dart';
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/commerce_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:flutter/material.dart';
 
 class YourOrderScreen extends StatefulWidget {
@@ -111,12 +111,15 @@ class _YourOrderScreenState extends State<YourOrderScreen> {
                                           fontWeight: FontWeight.bold,
                                         ),
                                         SizedBox(width: 10),
-                                        Text(
-                                          'Search all orders',
-                                          style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                            color: Colors.grey,
+                                        Flexible(
+                                          child: Text(
+                                            'Search all orders',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
+                                              color: Colors.grey,
+                                            ),
                                           ),
                                         ),
                                         // SizedBox(height: 10),
@@ -213,16 +216,15 @@ class _YourOrderScreenState extends State<YourOrderScreen> {
                                     ],
                                   ),
 
-                                  Column(
+                                  Expanded(
+                                    child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'Oxizre Shaker Bottle for Protein Mixes - \nDouble Wall Stainless Steel, For...',
-                                          ),
-                                        ],
+                                      Text(
+                                        'Oxizre Shaker Bottle for Protein Mixes - \nDouble Wall Stainless Steel, For...',
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                       Row(
                                         children: [
@@ -261,26 +263,9 @@ class _YourOrderScreenState extends State<YourOrderScreen> {
                                         ],
                                       ),
                                     ],
+                                    ),
                                   ),
                                 ],
-                              ),
-                            ),
-
-                            const SizedBox(height: 20),
-
-                            ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const CommerceManagementScreen(),
-                                  ),
-                                );
-                              },
-                              child: const Text(
-                                'Done',
-                                style: TextStyle(color: Colors.blue),
                               ),
                             ),
                           ],

@@ -67,9 +67,13 @@ class _AddingToCartHomeScreenState extends State<AddingToCartHomeScreen> {
             const SizedBox(width: 8),
 
             // Location name
-            const Text(
-              'Lower Allston',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            const Flexible(
+              child: Text(
+                'Lower Allston',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
             ),
 
             // Dropdown arrow

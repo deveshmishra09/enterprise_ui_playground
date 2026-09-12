@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/commerce_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:flutter/material.dart';
 
 class PaymentConfermationScreen extends StatefulWidget {
@@ -135,37 +135,6 @@ class _PaymentConfermationScreenState extends State<PaymentConfermationScreen> {
                     ],
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 100),
-
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const CommerceManagementScreen(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 50,
-                          vertical: 15,
-                        ),
-                      ),
-                      child: Text('Done', style: TextStyle(fontSize: 18)),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
-                            
+
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                 ],
                               ),
-                            
+
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -164,10 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               const SizedBox(height: 20),
                               Row(
-                                children: [
-                                  _billPaymentIcons(Icons.add, 'Add'),
-                                  
-                                ],
+                                children: [_billPaymentIcons(Icons.add, 'Add')],
                               ),
                             ],
                           ),
@@ -201,11 +198,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    'Bill Payments',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                  Flexible(
+                                    child: Text(
+                                      'Bill Payments',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   const Spacer(),
@@ -238,13 +238,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(height: 20),
                               Row(
                                 children: [
-                                  _billPaymentIcons(Icons.phone_android, 'Mobile'),
+                                  _billPaymentIcons(
+                                    Icons.phone_android,
+                                    'Mobile',
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        isScrollControlled: true,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(20),
+                                          ),
+                                        ),
+                                        builder: (context) {
+                                          return const ShowAllBottomSheet();
+                                        },
+                                      );
+                                    },
+                                  ),
                                   const Spacer(),
                                   _billPaymentIcons(Icons.bolt, 'Electricity'),
                                   const Spacer(),
                                   _billPaymentIcons(Icons.water_drop, 'Water'),
                                   const Spacer(),
-                                  _billPaymentIcons(Icons.local_gas_station, 'Gas'),
+                                  _billPaymentIcons(
+                                    Icons.local_gas_station,
+                                    'Gas',
+                                  ),
                                 ],
                               ),
                               const SizedBox(height: 20),
@@ -254,9 +274,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   const Spacer(),
                                   _billPaymentIcons(Icons.wifi, 'Internet'),
                                   const Spacer(),
-                                  _billPaymentIcons(Icons.local_convenience_store, 'Toll'),
+                                  _billPaymentIcons(
+                                    Icons.local_convenience_store,
+                                    'Toll',
+                                  ),
                                   const Spacer(),
-                                  _billPaymentIcons(Icons.local_parking, 'Parking'),
+                                  _billPaymentIcons(
+                                    Icons.local_parking,
+                                    'Parking',
+                                  ),
                                 ],
                               ),
                             ],
@@ -272,12 +298,9 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
 
-      bottomNavigationBar : NavigationBar(
+      bottomNavigationBar: NavigationBar(
         destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
           NavigationDestination(
             icon: Icon(Icons.account_balance_wallet),
             label: 'Wallet',
@@ -286,30 +309,42 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.receipt_long),
             label: 'Transactions',
           ),
-          NavigationDestination(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+          NavigationDestination(icon: Icon(Icons.person), label: 'Profile'),
         ],
-      )
+      ),
     );
   }
 }
 
-Widget _billPaymentIcons(IconData icon, String label) {
-  return Column(
-    children: [
-      Container(
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white70,
+Widget _billPaymentIcons(
+  IconData icon,
+  String label, {
+  VoidCallback? onPressed,
+}) {
+  return SizedBox(
+    width: 64,
+    child: Column(
+      children: [
+        GestureDetector(
+          onTap: onPressed,
+          child: Container(
+            width: 60,
+            height: 60,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.white70,
+            ),
+            child: Icon(icon, size: 30, color: Colors.blue),
+          ),
         ),
-        child: Icon(icon, size: 30, color: Colors.blue),
-      ),
-      const SizedBox(height: 7),
-      Text(label, style: TextStyle(color: Colors.black)),
-    ],
+        const SizedBox(height: 7),
+        Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(color: Colors.black),
+        ),
+      ],
+    ),
   );
 }

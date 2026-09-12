@@ -30,7 +30,7 @@ class SubFlowCard extends StatelessWidget {
         side: BorderSide(color: Theme.of(context).dividerColor),
       ),
       child: InkWell(
-        onTap: () => context.go('/flows/$flowSlug/${subFlow.slug}'),
+        onTap: () => context.push('/flows/$flowSlug/${subFlow.slug}'),
         child: Padding(
           padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(

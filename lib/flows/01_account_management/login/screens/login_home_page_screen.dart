@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/01_account_management/account_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/edit_profile/screen/profile_screen.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/edit_profile/widgets/circular_avatar.dart';
 import 'package:flutter/material.dart';
@@ -166,30 +166,6 @@ class LoginHomePageScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 20),  
-
-                const Spacer(),   
-
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountManagementScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 15,
-                    ),
-                  ),
-                  child: const Text('Back to Account Management Screen'),
-                ),            
               ],
             ),
           ),

@@ -217,11 +217,14 @@ class _HomeScreenState extends State<TransferringHomeScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Text(
-                                    'Bill Payments',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                  Flexible(
+                                    child: Text(
+                                      'Bill Payments',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   const Spacer(),
@@ -300,19 +303,27 @@ class _HomeScreenState extends State<TransferringHomeScreen> {
 }
 
 Widget _billPaymentIcons(IconData icon, String label) {
-  return Column(
-    children: [
-      Container(
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: Colors.white70,
+  return SizedBox(
+    width: 64,
+    child: Column(
+      children: [
+        Container(
+          width: 60,
+          height: 60,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: Colors.white70,
+          ),
+          child: Icon(icon, size: 30, color: Colors.blue),
         ),
-        child: Icon(icon, size: 30, color: Colors.blue),
-      ),
-      const SizedBox(height: 7),
-      Text(label, style: TextStyle(color: Colors.black)),
-    ],
+        const SizedBox(height: 7),
+        Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(color: Colors.black),
+        ),
+      ],
+    ),
   );
 }

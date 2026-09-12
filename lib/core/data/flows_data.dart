@@ -1,3 +1,6 @@
+import 'package:enterprise_ui_playground/flows/01_account_management/logout/screens/logout_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_order&refunding/screens/order_tracking_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:enterprise_ui_playground/core/models/app_flow.dart';
@@ -15,10 +18,8 @@ import 'package:enterprise_ui_playground/flows/01_account_management/reset_passw
     show ResetPasswordLoginScreen;
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/adding_to_cart&bag/screens/adding_to_cart_home_screen.dart'
     show AddingToCartHomeScreen;
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/boopking&reserving/screens/booking_home_screen.dart'
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/booking&reserving/screens/booking_home_screen.dart'
     show BookingHomeScreen;
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_order&refunding/screens/your_order_screen.dart'
-    show YourOrderScreen;
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/listing/screens/listing_home_screen.dart'
     show ListingHomeScreen;
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/purchasing&ordering.dart/screens/home_screen.dart'
@@ -40,10 +41,10 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     blurb: 'TODO(copy): sign-in, profile, and account lifecycle patterns.',
     subFlows: <SubFlow>[
       SubFlow(
-        slug: 'deleting-deactivating-account',
-        title: 'Deleting & Deactivating Account',
+        slug: 'logging-in',
+        title: 'Logging In',
         status: SubFlowStatus.built,
-        screenBuilder: _deleteAccountScreen,
+        screenBuilder: _loginScreen,
       ),
       SubFlow(
         slug: 'editing-profile',
@@ -52,19 +53,23 @@ const List<AppFlow> kAllFlows = <AppFlow>[
         screenBuilder: _editProfileScreen,
       ),
       SubFlow(
-        slug: 'logging-in',
-        title: 'Logging In',
+        slug: 'logging-out',
+        title: 'Logging Out',
         status: SubFlowStatus.built,
-        screenBuilder: _loginScreen,
+        screenBuilder: _logoutScreen,
       ),
-      SubFlow(slug: 'logging-out', title: 'Logging Out'),
       SubFlow(
         slug: 'resetting-password',
         title: 'Resetting Password',
         status: SubFlowStatus.built,
         screenBuilder: _resetPasswordScreen,
       ),
-      SubFlow(slug: 'switching-account', title: 'Switching Account'),
+      SubFlow(
+        slug: 'deleting-deactivating-account',
+        title: 'Deleting & Deactivating Account',
+        status: SubFlowStatus.built,
+        screenBuilder: _deleteAccountScreen,
+      ),
     ],
   ),
   AppFlow(
@@ -74,10 +79,22 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     blurb: 'TODO(copy): carts, checkout, subscriptions, and money movement.',
     subFlows: <SubFlow>[
       SubFlow(
+        slug: 'listing',
+        title: 'Listing',
+        status: SubFlowStatus.built,
+        screenBuilder: _listingScreen,
+      ),
+      SubFlow(
         slug: 'adding-to-cart-bag',
         title: 'Adding to Cart & Bag',
         status: SubFlowStatus.built,
         screenBuilder: _addingToCartScreen,
+      ),
+      SubFlow(
+        slug: 'purchasing-ordering',
+        title: 'Purchasing & Ordering',
+        status: SubFlowStatus.built,
+        screenBuilder: _purchasingScreen,
       ),
       SubFlow(
         slug: 'booking-reserving',
@@ -89,29 +106,22 @@ const List<AppFlow> kAllFlows = <AppFlow>[
         slug: 'canceling-order-refunding',
         title: 'Canceling Order & Refunding',
         status: SubFlowStatus.built,
-        screenBuilder: _cancelOrderScreen,
+        screenBuilder: _orderTrackingScreen,
       ),
-      SubFlow(slug: 'canceling-subscription', title: 'Canceling Subscription'),
-      SubFlow(
-        slug: 'listing',
-        title: 'Listing',
-        status: SubFlowStatus.built,
-        screenBuilder: _listingScreen,
-      ),
-      SubFlow(
-        slug: 'purchasing-ordering',
-        title: 'Purchasing & Ordering',
-        status: SubFlowStatus.built,
-        screenBuilder: _purchasingScreen,
-      ),
-      SubFlow(slug: 'redeeming', title: 'Redeeming'),
-      SubFlow(slug: 'subscribing-upgrading', title: 'Subscribing & Upgrading'),
       SubFlow(
         slug: 'transferring-money-donating',
         title: 'Transferring Money & Donating',
         status: SubFlowStatus.built,
         screenBuilder: _transferringScreen,
       ),
+      SubFlow(
+        slug: 'subscribing-upgrading',
+        title: 'Subscribing & Upgrading',
+        status: SubFlowStatus.built,
+        screenBuilder: _subscribingUpgradingScreen,
+      ),
+      SubFlow(slug: 'canceling-subscription', title: 'Canceling Subscription'),
+      SubFlow(slug: 'redeeming', title: 'Redeeming'),
     ],
   ),
   AppFlow(
@@ -134,10 +144,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'marking', title: 'Marking'),
       SubFlow(slug: 'moving', title: 'Moving'),
       SubFlow(slug: 'publishing', title: 'Publishing'),
-      SubFlow(
-        slug: 'recording-audio-video',
-        title: 'Recording Audio & Video',
-      ),
+      SubFlow(slug: 'recording-audio-video', title: 'Recording Audio & Video'),
       SubFlow(slug: 'reordering', title: 'Reordering'),
       SubFlow(slug: 'saving-to-collection', title: 'Saving to Collection'),
       SubFlow(slug: 'scanning', title: 'Scanning'),
@@ -145,10 +152,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'selecting-choosing', title: 'Selecting & Choosing'),
       SubFlow(slug: 'starting-completing', title: 'Starting & Completing'),
       SubFlow(slug: 'taking-photos', title: 'Taking Photos'),
-      SubFlow(
-        slug: 'uploading-downloading',
-        title: 'Uploading & Downloading',
-      ),
+      SubFlow(slug: 'uploading-downloading', title: 'Uploading & Downloading'),
       SubFlow(slug: 'watching-video', title: 'Watching Video'),
     ],
   ),
@@ -219,18 +223,24 @@ const List<AppFlow> kAllFlows = <AppFlow>[
 // --- Screen builders for `built` subflows ---------------------------------
 // Top-level tear-offs so the catalogue can stay `const`.
 
-Widget _deleteAccountScreen(BuildContext context) => const DeleteAccountScreen();
+Widget _deleteAccountScreen(BuildContext context) =>
+    const DeleteAccountScreen();
 Widget _editProfileScreen(BuildContext context) => const HomePageScreen();
 Widget _loginScreen(BuildContext context) => const LoginScreen();
+Widget _logoutScreen(BuildContext context) => const LogoutScreen();
 Widget _resetPasswordScreen(BuildContext context) =>
     const ResetPasswordLoginScreen();
 Widget _addingToCartScreen(BuildContext context) =>
     const AddingToCartHomeScreen();
 Widget _bookingScreen(BuildContext context) => const BookingHomeScreen();
-Widget _cancelOrderScreen(BuildContext context) => const YourOrderScreen();
+Widget _orderTrackingScreen(BuildContext context) =>
+    const OrderTrackingScreen();
 Widget _listingScreen(BuildContext context) => const ListingHomeScreen();
 Widget _purchasingScreen(BuildContext context) => const HomeScreen();
-Widget _transferringScreen(BuildContext context) => const TransferringHomeScreen();
+Widget _transferringScreen(BuildContext context) =>
+    const TransferringHomeScreen();
+Widget _subscribingUpgradingScreen(BuildContext context) =>
+    const SubscribingUpgradingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:enterprise_ui_playground/core/constants/breakpoints.dart';
 import 'package:enterprise_ui_playground/core/models/app_flow.dart';
@@ -21,6 +22,7 @@ class FlowDetailPage extends StatelessWidget {
     final scheme = Theme.of(context).colorScheme;
 
     return PageScaffold(
+      onBack: () => context.canPop() ? context.pop() : context.go('/'),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: context.sectionGap),
         child: MaxWidthContainer(

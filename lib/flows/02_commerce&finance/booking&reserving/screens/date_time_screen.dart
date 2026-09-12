@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/boopking&reserving/screens/details_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/booking&reserving/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
 class DateTimeScreen extends StatefulWidget {

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:enterprise_ui_playground/core/constants/breakpoints.dart';
 import 'package:enterprise_ui_playground/core/models/app_flow.dart';
 import 'package:enterprise_ui_playground/core/models/sub_flow.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:enterprise_ui_playground/core/theme/app_colors.dart';
 import 'package:enterprise_ui_playground/core/theme/app_spacing.dart';
 import 'package:enterprise_ui_playground/core/theme/app_typography.dart';
@@ -15,7 +16,7 @@ import 'package:enterprise_ui_playground/features/subflow_editor/widgets/subflow
 /// Slot 3b — route `/flows/:flowSlug/:subFlowSlug`. Preview header, a list of the
 /// flow's subflows, and a live [DeviceFramePreview] of the selected one. No
 /// footer — this is a full-height workspace.
-class SubflowEditorPage extends StatelessWidget {
+class SubflowEditorPage extends StatefulWidget {
   const SubflowEditorPage({
     super.key,
     required this.flow,
@@ -26,7 +27,18 @@ class SubflowEditorPage extends StatelessWidget {
   final SubFlow subFlow;
 
   @override
+  State<SubflowEditorPage> createState() => _SubflowEditorPageState();
+}
+
+class _SubflowEditorPageState extends State<SubflowEditorPage> {
+  int _resetTick = 0;
+
+  void _resetPreview() => setState(() => _resetTick++);
+
+  @override
   Widget build(BuildContext context) {
+    final flow = widget.flow;
+    final subFlow = widget.subFlow;
     final width = MediaQuery.sizeOf(context).width;
     final stacked = width < Breakpoints.editorStackBelow;
     final railWidth = (width * 0.2).clamp(180.0, 320.0);
@@ -34,7 +46,7 @@ class SubflowEditorPage extends StatelessWidget {
     final preview = Padding(
       padding: const EdgeInsets.all(AppSpacing.lg),
       child: DeviceFramePreview(
-        key: ValueKey(subFlow.slug),
+        key: ValueKey('${subFlow.slug}-$_resetTick'),
         child: subFlow.isBuilt
             ? Builder(builder: subFlow.screenBuilder!)
             : ComingSoonScreen(
@@ -44,32 +56,59 @@ class SubflowEditorPage extends StatelessWidget {
       ),
     );
 
-    return Scaffold(
-      body: Column(
+    // The preview pane (second column) with the reset action pinned to its
+    // top-right corner.
+    final previewPane = Expanded(
+      child: Stack(
         children: [
-          const SiteHeader(variant: SiteHeaderVariant.preview),
-          Expanded(
-            child: stacked
-                ? Column(
-                    children: [
-                      _ChipStrip(flow: flow, activeSlug: subFlow.slug),
-                      Expanded(child: Center(child: preview)),
-                    ],
-                  )
-                : Row(
-                    children: [
-                      SizedBox(
-                        width: railWidth,
-                        child: SubflowListPanel(
-                          flow: flow,
-                          activeSlug: subFlow.slug,
-                        ),
-                      ),
-                      Expanded(child: Center(child: preview)),
-                    ],
-                  ),
+          Center(child: preview),
+          Positioned(
+            top: AppSpacing.xs,
+            right: AppSpacing.xs,
+            child: IconButton(
+              tooltip: 'Refresh preview',
+              onPressed: _resetPreview,
+              icon: const Icon(Icons.refresh, color: AppColors.primary, size: 30),
+            ),
           ),
         ],
+      ),
+    );
+
+    return Scaffold(
+      body: SubflowResetScope(
+        reset: _resetPreview,
+        child: Column(
+          children: [
+            SiteHeader(
+              variant: SiteHeaderVariant.preview,
+              onBack: () => context.canPop()
+                  ? context.pop()
+                  : context.go('/flows/${flow.slug}'),
+            ),
+            Expanded(
+              child: stacked
+                  ? Column(
+                      children: [
+                        _ChipStrip(flow: flow, activeSlug: subFlow.slug),
+                        previewPane,
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        SizedBox(
+                          width: railWidth,
+                          child: SubflowListPanel(
+                            flow: flow,
+                            activeSlug: subFlow.slug,
+                          ),
+                        ),
+                        previewPane,
+                      ],
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }

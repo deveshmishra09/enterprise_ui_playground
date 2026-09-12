@@ -17,6 +17,7 @@ class PageScaffold extends StatelessWidget {
     this.headerVariant = SiteHeaderVariant.defaultNav,
     this.showFooter = true,
     this.scrollController,
+    this.onBack,
   });
 
   final Widget child;
@@ -27,13 +28,16 @@ class PageScaffold extends StatelessWidget {
   /// landing page uses this to jump to sections).
   final ScrollController? scrollController;
 
+  /// When set, a back arrow is shown in the header.
+  final VoidCallback? onBack;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridBackground(
         child: Column(
           children: [
-            SiteHeader(variant: headerVariant),
+            SiteHeader(variant: headerVariant, onBack: onBack),
             Expanded(
               child: SingleChildScrollView(
                 controller: scrollController,

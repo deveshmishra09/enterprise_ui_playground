@@ -1,15 +1,14 @@
-import 'package:enterprise_ui_playground/flows/01_account_management/account_management_screen.dart';
-import 'package:enterprise_ui_playground/flows/01_account_management/delete_deactivate_account/screen/delete_account_screen.dart';
+import 'package:enterprise_ui_playground/flows/01_account_management/logout/screens/logout_home_screen.dart';
 import 'package:flutter/material.dart';
 
-class HelpcenterLegalScreen extends StatefulWidget {
-  const HelpcenterLegalScreen({super.key});
+class LogoutScreen extends StatefulWidget {
+  const LogoutScreen({super.key});
 
   @override
-  State<HelpcenterLegalScreen> createState() => _HelpcenterLegalScreenState();
+  State<LogoutScreen> createState() => _LogoutScreenState();
 }
 
-class _HelpcenterLegalScreenState extends State<HelpcenterLegalScreen> {
+class _LogoutScreenState extends State<LogoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -207,12 +206,7 @@ class _HelpcenterLegalScreenState extends State<HelpcenterLegalScreen> {
                       minimumSize: Size(double.infinity, 50),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AccountManagementScreen(),
-                        )
-                      );
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const LogoutHomeScreen()));
                     },
                     child: Text(
                       'Log out',
@@ -225,14 +219,7 @@ class _HelpcenterLegalScreenState extends State<HelpcenterLegalScreen> {
                   const SizedBox(height: 10),
     
                   TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DeleteAccountScreen(),
-                        )
-                      );
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Delete account',
                       style: Theme.of(

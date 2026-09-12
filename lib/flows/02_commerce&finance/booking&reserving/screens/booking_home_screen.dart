@@ -1,4 +1,4 @@
-import "package:enterprise_ui_playground/flows/02_commerce&finance/boopking&reserving/screens/date_time_screen.dart";
+import "package:enterprise_ui_playground/flows/02_commerce&finance/booking&reserving/screens/date_time_screen.dart";
 import "package:flutter/material.dart";
 
 class BookingHomeScreen extends StatefulWidget {
@@ -13,7 +13,7 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
   int _selectedImageIndex = 0;
 
   // Base directory path for your assets
-  final String _assetPath = "lib/flows/02_commerce&finance/boopking&reserving/assets/images/img";
+  final String _assetPath = "lib/flows/02_commerce&finance/booking&reserving/assets/images/img";
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +73,13 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Grand Horizon Resort",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      const Expanded(
+                        child: Text(
+                          "Grand Horizon Resort",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Row(
                         children: const [
@@ -167,13 +171,20 @@ class _BookingHomeScreenState extends State<BookingHomeScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text("Total Price", style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  Text("\$350 / night", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                ],
+              Flexible(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text("Total Price", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                    Text(
+                      "\$350 / night",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
               ElevatedButton(
                 onPressed: () {

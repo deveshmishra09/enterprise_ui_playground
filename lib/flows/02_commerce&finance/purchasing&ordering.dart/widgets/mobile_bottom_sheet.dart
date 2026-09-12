@@ -57,8 +57,6 @@ class _MobileBottomSheetState extends State<MobileBottomSheet> {
                     const Divider(),
                     _billPaymentOptions(context, 'Jio', Icons.sim_card),
                     const Divider(),
-                    _billPaymentOptions(context, 'Jio', Icons.sim_card),
-                    const Divider(),
                     _billPaymentOptions(context, 'VI', Icons.sim_card),
                     const Divider(),
                     _billPaymentOptions(context, 'Airtel', Icons.sim_card),

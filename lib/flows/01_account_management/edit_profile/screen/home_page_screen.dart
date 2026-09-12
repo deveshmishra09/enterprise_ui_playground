@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/01_account_management/account_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/edit_profile/screen/profile_screen.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/edit_profile/widgets/circular_avatar.dart';
 import 'package:flutter/material.dart';
@@ -41,27 +41,29 @@ class HomePageScreen extends StatelessWidget {
                               ),
                               
                               const SizedBox(width: 20),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Mr Adam',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(color: Colors.white),
-                                  ),
-                                  Text(
-                                    'adam123@gmail.com',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: Colors.white),
-                                  ),
-                                ],
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Mr Adam',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleLarge
+                                          ?.copyWith(color: Colors.white),
+                                    ),
+                                    Text(
+                                      'adam123@gmail.com',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
                               ),
-
-                              const Spacer(),
 
                               IconButton(
                                 icon: const Icon(Icons.edit, color: Colors.white),
@@ -74,14 +76,11 @@ class HomePageScreen extends StatelessWidget {
 
                           const SizedBox(height: 40),
 
-                          Row(
-                            children: [
-                              Text(
-                                'On member since July 2025',
-                                style: Theme.of(context).textTheme.titleMedium
-                                    ?.copyWith(color: Colors.white),
-                              ),
-                            ],
+                          Text(
+                            'On member since July 2025',
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.titleMedium
+                                ?.copyWith(color: Colors.white),
                           ),
                         ],
                       ),
@@ -94,11 +93,14 @@ class HomePageScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Latest orders',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleLarge?.copyWith(color: Colors.black),
+                    Flexible(
+                      child: Text(
+                        'Latest orders',
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleLarge?.copyWith(color: Colors.black),
+                      ),
                     ),
                     TextButton(onPressed: () {}, child: const Text('See all')),
                   ],
@@ -116,10 +118,13 @@ class HomePageScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Order #12345',
-                              style: Theme.of(context).textTheme.titleMedium
-                                  ?.copyWith(color: Colors.black),
+                            Flexible(
+                              child: Text(
+                                'Order #12345',
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(color: Colors.black),
+                              ),
                             ),
                             Text(
                               'Delivered',
@@ -132,10 +137,13 @@ class HomePageScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Order #12346',
-                              style: Theme.of(context).textTheme.titleMedium
-                                  ?.copyWith(color: Colors.black),
+                            Flexible(
+                              child: Text(
+                                'Order #12346',
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(color: Colors.black),
+                              ),
                             ),
                             Text(
                               'In Progress',
@@ -154,11 +162,14 @@ class HomePageScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Your subscriptions',
-                      style: Theme.of(
-                        context,
-                      ).textTheme.titleMedium?.copyWith(color: Colors.black),
+                    Flexible(
+                      child: Text(
+                        'Your subscriptions',
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(
+                          context,
+                        ).textTheme.titleMedium?.copyWith(color: Colors.black),
+                      ),
                     ),
                     TextButton(
                       onPressed: () {},
@@ -166,30 +177,6 @@ class HomePageScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 20),  
-
-                const Spacer(),   
-
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountManagementScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 15,
-                    ),
-                  ),
-                  child: const Text('Back to Account Management Screen'),
-                ),          
               ],
             ),
           ),

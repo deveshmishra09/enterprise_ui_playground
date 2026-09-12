@@ -146,7 +146,7 @@ class _EnterAmountBottomSheetState extends State<EnterAmountBottomSheet> {
                         child: Icon(Icons.account_balance, color: Colors.white),
                       ),
 
-                      const SizedBox(width: 15),
+                      const SizedBox(width: 14),
 
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,7 +156,7 @@ class _EnterAmountBottomSheetState extends State<EnterAmountBottomSheet> {
                                 ? widget.receiverName
                                 : 'Receiver Name not available',
                             style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
                             ),

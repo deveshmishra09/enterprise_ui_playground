@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/01_account_management/account_management_screen.dart';
+import 'package:enterprise_ui_playground/flows/01_account_management/delete_deactivate_account/screen/delete_deactivate_account_login_screen.dart';
 import 'package:flutter/material.dart';
 
 class DeleteAccountScreen extends StatefulWidget {
@@ -23,12 +23,13 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                children: [
-                  Text(
-                    '''By confirming the deletion of your account, all associated information will be permanently removed. This includes:
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(
+                        '''By confirming the deletion of your account, all associated information will be permanently removed. This includes:
 
 • Personal details provided
 • Transaction history and purchase records
@@ -38,33 +39,35 @@ Account deletion is an irreversible process, and once completed, the data cannot
 Please be certain that you want to proceed with this action.
 
 Do you want to delete your account?''',
-                    style: TextStyle(
-                      height: 1.5,
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      // better line spacing
-                    ),
-                  ),
+                        style: TextStyle(
+                          height: 1.5,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          // better line spacing
+                        ),
+                      ),
 
-                  const SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
-                  CheckboxListTile(
-                    value: isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isChecked = value ?? false;
-                      });
-                    },
-                    title: const Text(
-                      'Yes, delete my account',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    controlAffinity:
-                        ListTileControlAffinity.leading, // checkbox on left
-                    contentPadding: EdgeInsets.zero,
-                    dense: true,
+                      CheckboxListTile(
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value ?? false;
+                          });
+                        },
+                        title: const Text(
+                          'Yes, delete my account',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        controlAffinity:
+                            ListTileControlAffinity.leading, // checkbox on left
+                        contentPadding: EdgeInsets.zero,
+                        dense: true,
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
 
               Column(
@@ -127,6 +130,7 @@ Do you want to delete your account?''',
   void showAccountDeletedDialog(BuildContext context) {
     showDialog(
       context: context,
+      useRootNavigator: false,
       barrierDismissible: false,
       builder: (BuildContext context) {
         return Dialog(
@@ -161,17 +165,7 @@ Do you want to delete your account?''',
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      // 1. Close the dialog
-                      Navigator.of(context).pop();
-
-                      // 2. Go to Login Screen and remove all previous screens
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const AccountManagementScreen(), // ← your login screen
-                        ),
-                        (route) => false, // removes all previous routes
-                      );
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const DeleteDeactivateAccountLoginScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,

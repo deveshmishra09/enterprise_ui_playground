@@ -1,19 +1,18 @@
-import 'package:enterprise_ui_playground/flows/01_account_management/login/widgets/login_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class DeleteDeactivateAccountLoginScreen extends StatefulWidget {
   final bool showInboxAnimation;
 
-  const LoginScreen({
+  const DeleteDeactivateAccountLoginScreen({
     super.key,
     this.showInboxAnimation = false,
   });
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<DeleteDeactivateAccountLoginScreen> createState() => _DeleteDeactivateAccountLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>
+class _DeleteDeactivateAccountLoginScreenState extends State<DeleteDeactivateAccountLoginScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
@@ -98,16 +97,7 @@ class _LoginScreenState extends State<LoginScreen>
                           foregroundColor: Colors.white,
                           backgroundColor: Colors.transparent,
                         ),
-                        onPressed: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (BuildContext context) {
-                              return LoginBottomSheet();
-                            },
-                          );
-                        },
+                        onPressed: () {},
                         child: const Text('Login'),
                       ),
                     ),

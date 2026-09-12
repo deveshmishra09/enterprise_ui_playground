@@ -1,4 +1,3 @@
-import 'package:enterprise_ui_playground/flows/01_account_management/account_management_screen.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/reset_password/widgets/reset_password_login_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -66,33 +65,26 @@ class _ResetPasswordLoginScreenState extends State<ResetPasswordLoginScreen>
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      'Yours.\nOn the move.',
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
+                Text(
+                  'Yours.\nOn the move.',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
 
                 const SizedBox(height: 10),
 
-                Row(
-                  children: [
-                    Text(
-                      'Never miss out on what you love. \nAll in the one app.',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
+                Text(
+                  'Never miss out on what you love. \nAll in the one app.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white,
+                  ),
                 ),
 
                 const SizedBox(height: 20),
@@ -147,29 +139,6 @@ class _ResetPasswordLoginScreenState extends State<ResetPasswordLoginScreen>
                       ),
                     ),
                   ],
-                ),
-
-                const SizedBox(height: 20),
- 
-
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AccountManagementScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 15,
-                    ),
-                  ),
-                  child: const Text('Back to Account Management Screen'),
                 ),
               ],
             ),

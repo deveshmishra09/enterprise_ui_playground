@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/commerce_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/listing/screens/post_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -67,9 +67,13 @@ class _ListingHomeScreenState extends State<ListingHomeScreen> {
             const SizedBox(width: 8),
 
             // Location name
-            const Text(
-              'Lower Allston',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+            const Flexible(
+              child: Text(
+                'Lower Allston',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+              ),
             ),
 
             // Dropdown arrow
@@ -469,28 +473,6 @@ class _ListingHomeScreenState extends State<ListingHomeScreen> {
                     trailing: Text(saleItemDetails?['price'] ?? '\$0.00'),
                     onTap: () {},
                   ),
-                ),
-
-                const SizedBox(height: 20),
-                
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const CommerceManagementScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 40,
-                      vertical: 15,
-                    ),
-                  ),
-                  child: const Text('Back to Account Management Screen'),
                 ),
               ],
             ),

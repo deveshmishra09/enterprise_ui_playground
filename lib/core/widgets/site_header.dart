@@ -16,9 +16,17 @@ import 'theme_toggle_button.dart';
 enum SiteHeaderVariant { defaultNav, preview }
 
 class SiteHeader extends StatelessWidget {
-  const SiteHeader({super.key, this.variant = SiteHeaderVariant.defaultNav});
+  const SiteHeader({
+    super.key,
+    this.variant = SiteHeaderVariant.defaultNav,
+    this.onBack,
+  });
 
   final SiteHeaderVariant variant;
+
+  /// When set, a back arrow is shown before the brand. Absent on pages that
+  /// don't sit below another page in the hierarchy.
+  final VoidCallback? onBack;
 
   /// Target width of the brand lock-up on desktop — the brief's "114mm"
   /// (~432 logical px, decision R7).
@@ -39,8 +47,27 @@ class SiteHeader extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: context.outerGutter),
       child: context.isDesktop
-          ? _DesktopBar(isPreview: isPreview, brandSlotWidth: _brandSlotWidth)
-          : _CompactBar(isPreview: isPreview),
+          ? _DesktopBar(
+              isPreview: isPreview,
+              brandSlotWidth: _brandSlotWidth,
+              onBack: onBack,
+            )
+          : _CompactBar(isPreview: isPreview, onBack: onBack),
+    );
+  }
+}
+
+class _BackButton extends StatelessWidget {
+  const _BackButton({required this.onBack});
+
+  final VoidCallback onBack;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      tooltip: 'Back',
+      onPressed: onBack,
+      icon: const Icon(Icons.arrow_back),
     );
   }
 }
@@ -112,10 +139,15 @@ class _ProfileButton extends StatelessWidget {
 // --- Desktop layout --------------------------------------------------
 
 class _DesktopBar extends StatelessWidget {
-  const _DesktopBar({required this.isPreview, required this.brandSlotWidth});
+  const _DesktopBar({
+    required this.isPreview,
+    required this.brandSlotWidth,
+    this.onBack,
+  });
 
   final bool isPreview;
   final double brandSlotWidth;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +155,7 @@ class _DesktopBar extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: const [ThemeToggleButton(), _ProfileButton()],
     );
+    final back = onBack;
 
     if (isPreview) {
       return Stack(
@@ -130,6 +163,7 @@ class _DesktopBar extends StatelessWidget {
         children: [
           Row(
             children: [
+              if (back != null) _BackButton(onBack: back),
               SizedBox(width: brandSlotWidth, child: const _Brand()),
               const Spacer(),
               actions,
@@ -142,6 +176,7 @@ class _DesktopBar extends StatelessWidget {
 
     return Row(
       children: [
+        if (back != null) _BackButton(onBack: back),
         SizedBox(width: brandSlotWidth, child: const _Brand()),
         const _NavLinks(),
         const Spacer(),
@@ -196,29 +231,34 @@ class _NavLink extends StatelessWidget {
 // --- Compact (tablet / phone) layout -------------------------------
 
 class _CompactBar extends StatelessWidget {
-  const _CompactBar({required this.isPreview});
+  const _CompactBar({required this.isPreview, this.onBack});
 
   final bool isPreview;
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
+    final back = onBack;
+
     if (isPreview) {
       return Stack(
         alignment: Alignment.center,
-        children: const [
+        children: [
           Row(
             children: [
-              Expanded(child: _Brand()),
-              ThemeToggleButton(),
+              if (back != null) _BackButton(onBack: back),
+              const Expanded(child: _Brand()),
+              const ThemeToggleButton(),
             ],
           ),
-          IgnorePointer(child: _PreviewLabel()),
+          const IgnorePointer(child: _PreviewLabel()),
         ],
       );
     }
 
     return Row(
       children: [
+        if (back != null) _BackButton(onBack: back),
         const Expanded(child: _Brand()),
         const ThemeToggleButton(),
         if (!context.isPhone) const _ProfileButton(),

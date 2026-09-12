@@ -25,7 +25,7 @@ class ChoosePaymentTypeBottomSheet extends StatelessWidget {
                   padding: EdgeInsets.only(left: 15.0, top: 20.0),
                   child: Text(
                     'Choose Payment Type',
-                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
 
@@ -37,7 +37,7 @@ class ChoosePaymentTypeBottomSheet extends StatelessWidget {
                     },
                     child: const Text(
                       'Cancel',
-                      style: TextStyle(fontSize: 18, color: Colors.blue),
+                      style: TextStyle(fontSize: 15, color: Colors.blue),
                     ),
                   ),
                 ),

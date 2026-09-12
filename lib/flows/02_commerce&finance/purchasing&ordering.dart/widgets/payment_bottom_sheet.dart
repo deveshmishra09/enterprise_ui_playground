@@ -175,7 +175,8 @@ class _PaymentBottomSheetState extends State<PaymentBottomSheet> {
 
             TextField(
               decoration: InputDecoration(
-                hintText: '₹ Amount',
+                prefixText: '₹ ',
+                hintText: 'Amount',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

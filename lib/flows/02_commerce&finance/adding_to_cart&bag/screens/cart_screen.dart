@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/commerce_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
@@ -47,28 +47,6 @@ class _CartScreenState extends State<CartScreen> {
                 },
               ),
             ),
-      
-            const Spacer(),   
-      
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const CommerceManagementScreen(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 40,
-                    vertical: 15,
-                  ),
-                ),
-                child: const Text('Back to Account Management Screen'),
-              ),
           ],
         ),
       ),

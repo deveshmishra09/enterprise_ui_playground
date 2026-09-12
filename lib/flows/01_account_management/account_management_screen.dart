@@ -1,6 +1,6 @@
 import 'package:enterprise_ui_playground/app_router.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/delete_deactivate_account/screen/delete_account_screen.dart';
-import 'package:enterprise_ui_playground/flows/01_account_management/delete_deactivate_account/screen/helpcenter_legal_screen.dart';
+import 'package:enterprise_ui_playground/flows/01_account_management/logout/screens/logout_screen.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/edit_profile/screen/home_page_screen.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/login/screens/login_screen.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/reset_password/screens/reset_password_login_screen.dart';
@@ -156,7 +156,7 @@ class _AccountManagementScreenState extends State<AccountManagementScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HelpcenterLegalScreen(),
+                                builder: (context) => const LogoutScreen(),
                               ),
                             );
                           },

@@ -1,10 +1,11 @@
 import 'package:enterprise_ui_playground/app_router.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/delete_deactivate_account/screen/delete_account_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/adding_to_cart&bag/screens/adding_to_cart_home_screen.dart';
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/boopking&reserving/screens/booking_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/booking&reserving/screens/booking_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_order&refunding/screens/order_tracking_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/listing/screens/listing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/purchasing&ordering.dart/screens/home_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/transferring_money&donating/screens/transferring_money_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -236,7 +237,7 @@ class _CommerceManagementScreenState extends State<CommerceManagementScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const DeleteAccountScreen(),
+                                builder: (context) => const SubscribingUpgradingHomeScreen(),
                               ),
                             );
                           },

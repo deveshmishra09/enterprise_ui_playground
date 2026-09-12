@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:enterprise_ui_playground/core/constants/app_strings.dart';
 import 'package:enterprise_ui_playground/core/theme/app_theme.dart';
 import 'package:enterprise_ui_playground/core/theme/theme_controller.dart';

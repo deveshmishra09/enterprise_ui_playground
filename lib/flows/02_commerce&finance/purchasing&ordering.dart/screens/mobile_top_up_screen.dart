@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/commerce_management_screen.dart';
+import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:flutter/material.dart';
 
 class MobileTopUpScreen extends StatefulWidget {
@@ -97,27 +97,6 @@ class _MobileTopUpScreenState extends State<MobileTopUpScreen> {
                     ],
                   ),
                 ),
-              ),
-
-              const SizedBox(height: 100),
-          
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(context) => CommerceManagementScreen()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      child: Text('Done', style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ],
               ),
             ],
           ),

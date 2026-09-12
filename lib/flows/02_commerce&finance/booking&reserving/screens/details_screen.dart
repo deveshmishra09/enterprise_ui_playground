@@ -1,4 +1,4 @@
-import 'package:enterprise_ui_playground/flows/02_commerce&finance/boopking&reserving/screens/tour_details_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/booking&reserving/screens/tour_details_screen.dart';
 import 'package:flutter/material.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -102,7 +102,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
                 const SizedBox(height: 20),
 
-                Row(
+                Column(
                   children: [
                     Text(
                       'I authorize the hotel to call/text me including for marketing purposes.',
@@ -113,7 +113,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
                 const SizedBox(height: 30),
 
-                Row(
+                Column(
                   children: [
                     Text(
                       'Are you currently working with real estate agent to help you buy a home?',
