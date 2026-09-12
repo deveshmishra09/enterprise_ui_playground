@@ -165,7 +165,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       bottomSheet: Container(
         width: double.infinity,
-        height: 60,
+        height: 60 + MediaQuery.paddingOf(context).bottom,
+        padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF003BFB), Color(0xFF0056FF)],

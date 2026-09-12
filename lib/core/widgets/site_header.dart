@@ -20,6 +20,7 @@ class SiteHeader extends StatelessWidget {
     super.key,
     this.variant = SiteHeaderVariant.defaultNav,
     this.onBack,
+    this.showThemeToggle = false,
   });
 
   final SiteHeaderVariant variant;
@@ -27,6 +28,10 @@ class SiteHeader extends StatelessWidget {
   /// When set, a back arrow is shown before the brand. Absent on pages that
   /// don't sit below another page in the hierarchy.
   final VoidCallback? onBack;
+
+  /// Only the landing page sets this — the theme can only be changed from
+  /// the home screen (decision: users go "home" to change it, not per-page).
+  final bool showThemeToggle;
 
   /// Target width of the brand lock-up on desktop — the brief's "114mm"
   /// (~432 logical px, decision R7).
@@ -51,8 +56,13 @@ class SiteHeader extends StatelessWidget {
               isPreview: isPreview,
               brandSlotWidth: _brandSlotWidth,
               onBack: onBack,
+              showThemeToggle: showThemeToggle,
             )
-          : _CompactBar(isPreview: isPreview, onBack: onBack),
+          : _CompactBar(
+              isPreview: isPreview,
+              onBack: onBack,
+              showThemeToggle: showThemeToggle,
+            ),
     );
   }
 }
@@ -143,33 +153,36 @@ class _DesktopBar extends StatelessWidget {
     required this.isPreview,
     required this.brandSlotWidth,
     this.onBack,
+    this.showThemeToggle = false,
   });
 
   final bool isPreview;
   final double brandSlotWidth;
   final VoidCallback? onBack;
+  final bool showThemeToggle;
 
   @override
   Widget build(BuildContext context) {
     final actions = Row(
       mainAxisSize: MainAxisSize.min,
-      children: const [ThemeToggleButton(), _ProfileButton()],
+      children: [
+        if (showThemeToggle) const ThemeToggleButton(),
+        const _ProfileButton(),
+      ],
     );
     final back = onBack;
 
     if (isPreview) {
-      return Stack(
-        alignment: Alignment.center,
+      // A dedicated slot for "Preview" between the brand and the actions
+      // (R22), not independently centered across the whole row — at widths
+      // just above the tablet cutoff the fixed brand slot can extend far
+      // enough right to sit under a row-centered label.
+      return Row(
         children: [
-          Row(
-            children: [
-              if (back != null) _BackButton(onBack: back),
-              SizedBox(width: brandSlotWidth, child: const _Brand()),
-              const Spacer(),
-              actions,
-            ],
-          ),
-          const IgnorePointer(child: _PreviewLabel()),
+          if (back != null) _BackButton(onBack: back),
+          SizedBox(width: brandSlotWidth, child: const _Brand()),
+          const Expanded(child: Center(child: _PreviewLabel())),
+          actions,
         ],
       );
     }
@@ -231,27 +244,32 @@ class _NavLink extends StatelessWidget {
 // --- Compact (tablet / phone) layout -------------------------------
 
 class _CompactBar extends StatelessWidget {
-  const _CompactBar({required this.isPreview, this.onBack});
+  const _CompactBar({
+    required this.isPreview,
+    this.onBack,
+    this.showThemeToggle = false,
+  });
 
   final bool isPreview;
   final VoidCallback? onBack;
+  final bool showThemeToggle;
 
   @override
   Widget build(BuildContext context) {
     final back = onBack;
 
     if (isPreview) {
-      return Stack(
-        alignment: Alignment.center,
+      // Not a Stack-centered label over the brand (R22): on phone widths the
+      // brand's "Enterprise UI Playground" text ran wide enough to sit right
+      // under the centered "Preview" text, overlapping it. Giving "Preview"
+      // its own slot after the (now not full-width) brand instead guarantees
+      // they never share the same space, at any width.
+      return Row(
         children: [
-          Row(
-            children: [
-              if (back != null) _BackButton(onBack: back),
-              const Expanded(child: _Brand()),
-              const ThemeToggleButton(),
-            ],
-          ),
-          const IgnorePointer(child: _PreviewLabel()),
+          if (back != null) _BackButton(onBack: back),
+          const Flexible(child: _Brand()),
+          const Expanded(child: Center(child: _PreviewLabel())),
+          if (showThemeToggle) const ThemeToggleButton(),
         ],
       );
     }
@@ -260,7 +278,7 @@ class _CompactBar extends StatelessWidget {
       children: [
         if (back != null) _BackButton(onBack: back),
         const Expanded(child: _Brand()),
-        const ThemeToggleButton(),
+        if (showThemeToggle) const ThemeToggleButton(),
         if (!context.isPhone) const _ProfileButton(),
         const _NavMenuButton(),
       ],

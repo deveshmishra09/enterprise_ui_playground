@@ -18,6 +18,7 @@ class PageScaffold extends StatelessWidget {
     this.showFooter = true,
     this.scrollController,
     this.onBack,
+    this.showThemeToggle = false,
   });
 
   final Widget child;
@@ -31,26 +32,37 @@ class PageScaffold extends StatelessWidget {
   /// When set, a back arrow is shown in the header.
   final VoidCallback? onBack;
 
+  /// Only the landing page sets this — the theme can only be changed from
+  /// the home screen.
+  final bool showThemeToggle;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridBackground(
-        child: Column(
-          children: [
-            SiteHeader(variant: headerVariant, onBack: onBack),
-            Expanded(
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    child,
-                    if (showFooter) const SiteFooter(),
-                  ],
+        child: SafeArea(
+          bottom: false,
+          child: Column(
+            children: [
+              SiteHeader(
+                variant: headerVariant,
+                onBack: onBack,
+                showThemeToggle: showThemeToggle,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      child,
+                      if (showFooter) const SiteFooter(),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

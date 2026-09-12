@@ -19,3 +19,13 @@ jobs:
       - run: flutter analyze --no-fatal-warnings
       - run: flutter test
       - run: flutter build web --release
+      # Only publish on real pushes to main — PR builds still run the steps
+      # above (test + build) but stop here, so a PR can't deploy to
+      # production before it's merged.
+      - name: Deploy to Cloudflare Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build/web --project-name=enterprise-ui-playground --branch=main
