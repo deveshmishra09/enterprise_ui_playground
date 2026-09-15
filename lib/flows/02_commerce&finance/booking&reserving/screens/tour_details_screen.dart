@@ -101,7 +101,7 @@ class _TourDetailsScreenState extends State<TourDetailsScreen> {
                   child: Stack(
                     children: [
                       Image.asset(
-                        'lib/flows/02_commerce&finance/boopking&reserving/assets/images/img1.jpg', // Placeholder for property image
+                        'lib/flows/02_commerce&finance/booking&reserving/assets/images/img1.jpg', // Placeholder for property image
                         width: 110,
                         height: 72,
                         fit: BoxFit.cover,
