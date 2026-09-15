@@ -38,6 +38,12 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     slug: 'account-management',
     title: 'Account Management',
     icon: Icons.manage_accounts_outlined,
+    backgroundIcons: <IconData>[
+      Icons.person_outline,
+      Icons.lock_outline,
+      Icons.verified_user_outlined,
+      Icons.switch_account_outlined,
+    ],
     blurb: 'TODO(copy): sign-in, profile, and account lifecycle patterns.',
     subFlows: <SubFlow>[
       SubFlow(
@@ -77,6 +83,12 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     slug: 'commerce-finance',
     title: 'Commerce & Finance',
     icon: Icons.account_balance,
+    backgroundIcons: <IconData>[
+      Icons.shopping_cart_outlined,
+      Icons.credit_card_outlined,
+      Icons.receipt_long_outlined,
+      Icons.account_balance_wallet_outlined,
+    ],
     blurb: 'TODO(copy): carts, checkout, subscriptions, and money movement.',
     subFlows: <SubFlow>[
       SubFlow(
@@ -129,6 +141,12 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     slug: 'content',
     title: 'Content',
     icon: Icons.article_outlined,
+    backgroundIcons: <IconData>[
+      Icons.edit_outlined,
+      Icons.photo_camera_outlined,
+      Icons.play_circle_outline,
+      Icons.cloud_upload_outlined,
+    ],
     blurb: 'TODO(copy): creating, organizing, and consuming content.',
     subFlows: <SubFlow>[
       SubFlow(slug: 'adding-creating', title: 'Adding & Creating'),
@@ -161,6 +179,12 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     slug: 'misc',
     title: 'Misc',
     icon: Icons.category_outlined,
+    backgroundIcons: <IconData>[
+      Icons.toggle_on_outlined,
+      Icons.dark_mode_outlined,
+      Icons.link,
+      Icons.visibility_outlined,
+    ],
     blurb: 'TODO(copy): settings, toggles, and everything in between.',
     subFlows: <SubFlow>[
       SubFlow(slug: 'connecting-linking', title: 'Connecting & Linking'),
@@ -178,6 +202,12 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     slug: 'new-user-experience',
     title: 'New User Experience',
     icon: Icons.person_add_alt_1_outlined,
+    backgroundIcons: <IconData>[
+      Icons.waving_hand_outlined,
+      Icons.person_add_alt_outlined,
+      Icons.school_outlined,
+      Icons.assignment_outlined,
+    ],
     blurb: 'TODO(copy): first-run, sign-up, and onboarding.',
     subFlows: <SubFlow>[
       SubFlow(slug: 'browsing-tutorial', title: 'Browsing Tutorial'),
@@ -190,6 +220,12 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     slug: 'social',
     title: 'Social',
     icon: Icons.groups_outlined,
+    backgroundIcons: <IconData>[
+      Icons.chat_bubble_outline,
+      Icons.favorite_border,
+      Icons.call_outlined,
+      Icons.share_outlined,
+    ],
     blurb: 'TODO(copy): people, messaging, and community actions.',
     subFlows: <SubFlow>[
       SubFlow(slug: 'banning-blocking', title: 'Banning & Blocking'),

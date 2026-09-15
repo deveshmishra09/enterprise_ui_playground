@@ -5,7 +5,7 @@ import '../models/app_flow.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
 import '../theme/app_typography.dart';
-import 'account_management_card_background.dart';
+import 'flow_card_background.dart';
 
 /// Grid card for one of the six flows (Slot 3). Tapping opens
 /// `/flows/<slug>`.
@@ -29,8 +29,9 @@ class FlowCard extends StatelessWidget {
         onTap: () => context.push('/flows/${flow.slug}'),
         child: Stack(
           children: [
-            if (flow.slug == 'account-management')
-              const Positioned.fill(child: AccountManagementCardBackground()),
+            Positioned.fill(
+              child: FlowCardBackground(icons: flow.backgroundIcons),
+            ),
             Padding(
               padding: const EdgeInsets.all(AppSpacing.lg),
               child: Column(

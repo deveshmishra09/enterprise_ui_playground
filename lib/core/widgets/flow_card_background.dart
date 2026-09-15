@@ -2,32 +2,25 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
 
-/// Decorative, pointer-reactive background for the Account Management
-/// [FlowCard]: a handful of account/security icons drift toward the cursor
-/// and brighten near it, plus a soft spotlight that follows the pointer.
+/// Decorative, pointer-reactive background for a [FlowCard]: the flow's
+/// [icons] (four of them — the layout places exactly four) drift toward the
+/// cursor and brighten near it, plus a soft spotlight that follows the pointer.
 ///
 /// Deliberately has no looping ticker — every transition is a bounded
 /// [AnimatedPositioned]/[AnimatedOpacity], so it settles once the pointer
 /// stops moving instead of animating forever (which would hang
 /// `pumpAndSettle` in widget tests).
-class AccountManagementCardBackground extends StatefulWidget {
-  const AccountManagementCardBackground({super.key});
+class FlowCardBackground extends StatefulWidget {
+  const FlowCardBackground({super.key, required this.icons});
+
+  final List<IconData> icons;
 
   @override
-  State<AccountManagementCardBackground> createState() =>
-      _AccountManagementCardBackgroundState();
+  State<FlowCardBackground> createState() => _FlowCardBackgroundState();
 }
 
-class _AccountManagementCardBackgroundState
-    extends State<AccountManagementCardBackground> {
+class _FlowCardBackgroundState extends State<FlowCardBackground> {
   Offset? _pointer;
-
-  static const List<IconData> _icons = <IconData>[
-    Icons.person_outline,
-    Icons.lock_outline,
-    Icons.verified_user_outlined,
-    Icons.switch_account_outlined,
-  ];
 
   static const Duration _duration = Duration(milliseconds: 220);
 
@@ -69,7 +62,7 @@ class _AccountManagementCardBackgroundState
                     ),
                   ),
                 ),
-                for (var i = 0; i < _icons.length; i++)
+                for (var i = 0; i < widget.icons.length; i++)
                   _driftingIcon(size, i, pointer),
               ],
             ),
@@ -108,7 +101,7 @@ class _AccountManagementCardBackgroundState
         child: AnimatedOpacity(
           duration: _duration,
           opacity: opacity,
-          child: Icon(_icons[index], size: 28, color: AppColors.primary),
+          child: Icon(widget.icons[index], size: 28, color: AppColors.primary),
         ),
       ),
     );

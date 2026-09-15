@@ -278,45 +278,30 @@ class _PickYourPlanScreenState extends State<PickYourPlanScreen> {
           ],
         ),
       ),
-      bottomSheet: Container(
-        width: double.infinity,
-        height: 60 + MediaQuery.paddingOf(context).bottom,
-        padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF003BFB), Color(0xFF0056FF)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ElevatedButton(
+          onPressed: _isLoading ? null : _handleContinue,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 38, 7, 236),
+            padding: const EdgeInsets.symmetric(vertical: 15),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
-        ),
-        child: Center(
-          child: Row(
-            children: [
-              Expanded(
-                child: OutlinedButton(
-                  onPressed: _isLoading ? null : _handleContinue,
-                  style: OutlinedButton.styleFrom(
-                    // backgroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 50,
-                      vertical: 25,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(1.0),
-                    ),
+          child: _isLoading
+              ? const SizedBox(
+                  height: 20,
+                  width: 20,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2,
                   ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                )
+              : const Text(
+                  'Continue',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
-              ),
-            ],
-          ),
         ),
       ),
 

@@ -43,6 +43,13 @@ abstract final class AppColors {
   /// Bezel of the device-frame preview (Slot 3b).
   static const Color deviceBezel = Color(0xFF17171A);
 
+  /// Browser-window chrome of the Web device-frame preview: the toolbar and
+  /// the close/minimize/zoom window dots.
+  static const Color browserToolbar = Color(0xFFE8E8EB);
+  static const Color browserDotClose = Color(0xFFFF5F57);
+  static const Color browserDotMinimize = Color(0xFFFEBC2E);
+  static const Color browserDotZoom = Color(0xFF28C840);
+
   /// Muted surface (cards, footer band) for the given brightness.
   static Color mutedSurfaceFor(Brightness brightness) =>
       brightness == Brightness.dark ? darkSurfaceMuted : lightSurfaceMuted;

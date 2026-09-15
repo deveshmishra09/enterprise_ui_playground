@@ -69,6 +69,30 @@ void main() {
     expect(find.byType(SiteFooter), findsNothing);
   });
 
+  testWidgets('web view keeps the running demo and uses a desktop viewport', (
+    tester,
+  ) async {
+    await _pumpAppAt(tester, '/flows/account-management/logging-in');
+    _drainLegacyDemoErrors(tester);
+
+    final nestedApp = find.descendant(
+      of: find.byType(DeviceFramePreview),
+      matching: find.byType(MaterialApp),
+    );
+    final demoState = tester.state(nestedApp);
+
+    await tester.tap(find.byTooltip('Web'));
+    await tester.pumpAndSettle();
+    _drainLegacyDemoErrors(tester);
+
+    // Same nested app — switching views must not restart the demo.
+    expect(tester.state(nestedApp), same(demoState));
+    expect(
+      MediaQuery.sizeOf(tester.element(find.byType(LoginScreen))),
+      const Size(1440, 900),
+    );
+  });
+
   testWidgets('a coming-soon subflow shows the placeholder in the frame', (
     tester,
   ) async {

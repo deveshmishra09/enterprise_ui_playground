@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_spacing.dart';
+import '../theme/app_typography.dart';
 
 /// Which real-world screen class the preview should simulate.
 enum ScreenView { mobile, tablet, web }
@@ -17,18 +18,18 @@ enum ScreenView { mobile, tablet, web }
 /// * a `builder` that re-wraps everything in a device-sized [MediaQuery] — the
 ///   demo sees that device's metrics regardless of the real window.
 ///
-/// [screenView] picks the simulated size:
+/// [screenView] picks the simulated size. Each view keeps its real size and
+/// aspect ratio but scales to use as much of the available space as it can —
+/// up *or* down, not capped at 1:1 — so it isn't stuck tiny on a big screen:
 /// * [ScreenView.mobile] — 390x844 phone, notch/home-indicator safe areas,
-///   phone bezel. Keeps that portrait aspect ratio but scales to use as much
-///   of the available space as it can — up *or* down, not capped at 1:1 —
-///   so it isn't stuck tiny on a big screen just because 390x844 is small.
+///   phone bezel.
 /// * [ScreenView.tablet] — 768x1024, thin outline frame, no notch insets.
-///   Same scale-to-fit-either-way behavior, its own aspect ratio.
-/// * [ScreenView.web] — no fixed size or bezel; fills all available space,
-///   like a browser window. If that space shrinks below phone size (the
-///   workspace toolbar/rail leave too little room), it scales down from a
-///   phone-sized floor instead of squeezing the previewed page's own layout
-///   past what it can render.
+/// * [ScreenView.web] — a 1440x900 desktop browser viewport under a browser
+///   toolbar (window dots + address bar), in the same thin outline frame.
+///
+/// All three views share one widget tree — only sizes and decorations change
+/// — so switching views resizes the running demo in place. A structural
+/// change would remount the nested [MaterialApp] and restart the demo.
 class DeviceFramePreview extends StatelessWidget {
   const DeviceFramePreview({
     super.key,
@@ -43,28 +44,30 @@ class DeviceFramePreview extends StatelessWidget {
 
   static const Size _mobileSize = Size(390, 844);
   static const Size _tabletSize = Size(768, 1024);
-  // Web has no fixed aspect ratio, so its "too small to render" floor can't
-  // reuse the mobile phone's tall portrait size (390x844) — a normal browser
-  // workspace is plenty wide but rarely that tall once header/toolbar chrome
-  // is subtracted, which made the floor trigger on every ordinary window and
-  // silently fall back to a scaled-down *phone*-shaped box instead of a wide
-  // web-shaped one. This floor is a genuinely-too-small threshold instead.
-  static const Size _webFloorSize = Size(320, 480);
+  static const Size _webSize = Size(1440, 900);
   static const double _safeTop = 47;
   static const double _safeBottom = 34;
   static const double _bezel = 10;
+  static const double _browserToolbarHeight = 52;
+  static const Duration _resizeDuration = Duration(milliseconds: 250);
 
   @override
   Widget build(BuildContext context) {
     final baseMediaQuery = MediaQuery.of(context);
     final isMobile = screenView == ScreenView.mobile;
+    final isWeb = screenView == ScreenView.web;
 
     final safeTop = isMobile ? _safeTop : 0.0;
     final safeBottom = isMobile ? _safeBottom : 0.0;
+    final screenRadius = Radius.circular(
+      isMobile ? AppRadius.device : AppRadius.sm,
+    );
 
     Widget buildScreen(Size size) => ClipRRect(
-      borderRadius: BorderRadius.circular(
-        isMobile ? AppRadius.device : AppRadius.sm,
+      // Square top corners under the browser toolbar, like a real window.
+      borderRadius: BorderRadius.vertical(
+        top: isWeb ? Radius.zero : screenRadius,
+        bottom: screenRadius,
       ),
       child: SizedBox(
         width: size.width,
@@ -97,28 +100,15 @@ class DeviceFramePreview extends StatelessWidget {
       ),
     );
 
-    if (screenView == ScreenView.web) {
-      return LayoutBuilder(
-        builder: (context, constraints) {
-          final available = constraints.biggest;
-          final fitsFloor =
-              available.width >= _webFloorSize.width &&
-              available.height >= _webFloorSize.height;
-          if (fitsFloor) return buildScreen(available);
-
-          return FittedBox(
-            fit: BoxFit.scaleDown,
-            child: buildScreen(_webFloorSize),
-          );
-        },
-      );
-    }
-
-    final targetSize = screenView == ScreenView.tablet
-        ? _tabletSize
-        : _mobileSize;
+    final targetSize = switch (screenView) {
+      ScreenView.mobile => _mobileSize,
+      ScreenView.tablet => _tabletSize,
+      ScreenView.web => _webSize,
+    };
+    final toolbarHeight = isWeb ? _browserToolbarHeight : 0.0;
     final frameWidth = targetSize.width + (isMobile ? _bezel * 2 : 4);
-    final frameHeight = targetSize.height + (isMobile ? _bezel * 2 : 4);
+    final frameHeight =
+        targetSize.height + toolbarHeight + (isMobile ? _bezel * 2 : 4);
 
     // SizedBox.expand forces the FittedBox to claim the whole available
     // column (a plain FittedBox under loose constraints only ever sizes
@@ -128,10 +118,10 @@ class DeviceFramePreview extends StatelessWidget {
       child: FittedBox(
         // contain (not scaleDown): grow to fill the available column too,
         // not just shrink — the whole point of "get the available column
-        // size", while still keeping the phone/tablet aspect ratio.
+        // size", while still keeping each view's aspect ratio.
         fit: BoxFit.contain,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 250),
+          duration: _resizeDuration,
           curve: Curves.easeOutCubic,
           width: frameWidth,
           height: frameHeight,
@@ -152,8 +142,94 @@ class DeviceFramePreview extends StatelessWidget {
                   border: Border.all(color: AppColors.deviceBezel, width: 2),
                   borderRadius: BorderRadius.circular(AppRadius.sm + 2),
                 ),
-          child: buildScreen(targetSize),
+          child: Column(
+            children: [
+              // Always in the tree (zero height unless web): adding/removing it
+              // would change the structure above the demo and remount it.
+              AnimatedContainer(
+                duration: _resizeDuration,
+                curve: Curves.easeOutCubic,
+                height: toolbarHeight,
+                clipBehavior: Clip.hardEdge,
+                decoration: const BoxDecoration(
+                  color: AppColors.browserToolbar,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(AppRadius.sm),
+                  ),
+                ),
+                child: const OverflowBox(
+                  alignment: Alignment.topCenter,
+                  minHeight: _browserToolbarHeight,
+                  maxHeight: _browserToolbarHeight,
+                  child: _BrowserToolbar(),
+                ),
+              ),
+              Expanded(child: buildScreen(targetSize)),
+            ],
+          ),
         ),
+      ),
+    );
+  }
+}
+
+/// The Web view's browser toolbar: window dots and a centered address bar.
+class _BrowserToolbar extends StatelessWidget {
+  const _BrowserToolbar();
+
+  static const double _dotSize = 12;
+
+  @override
+  Widget build(BuildContext context) {
+    const dots = [
+      AppColors.browserDotClose,
+      AppColors.browserDotMinimize,
+      AppColors.browserDotZoom,
+    ];
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+      child: Row(
+        children: [
+          for (final color in dots)
+            Container(
+              width: _dotSize,
+              height: _dotSize,
+              margin: const EdgeInsets.only(right: AppSpacing.sm),
+              decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+            ),
+          Expanded(
+            child: Center(
+              child: Container(
+                height: 32,
+                constraints: const BoxConstraints(maxWidth: 560),
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+                decoration: BoxDecoration(
+                  color: AppColors.lightSurface,
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: AppSpacing.xs,
+                  children: [
+                    const Icon(
+                      Icons.lock_outline,
+                      size: 14,
+                      color: AppColors.lightTextSecondary,
+                    ),
+                    Text(
+                      'yourapp.com',
+                      style: AppText.bodySmall(
+                        context,
+                      ).copyWith(color: AppColors.lightTextSecondary),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Same width as the dots, so the address bar sits truly centered.
+          SizedBox(width: (_dotSize + AppSpacing.sm) * dots.length),
+        ],
       ),
     );
   }

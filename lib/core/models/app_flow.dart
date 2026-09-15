@@ -10,6 +10,7 @@ class AppFlow {
     required this.slug,
     required this.title,
     required this.icon,
+    required this.backgroundIcons,
     required this.blurb,
     required this.subFlows,
   });
@@ -22,6 +23,10 @@ class AppFlow {
 
   /// Grid card icon.
   final IconData icon;
+
+  /// The four icons that drift in the card's hover background, picked to
+  /// show what the flow's subflows actually do.
+  final List<IconData> backgroundIcons;
 
   /// One-line description for the flow detail header. `TODO(copy)` for now.
   final String blurb;
