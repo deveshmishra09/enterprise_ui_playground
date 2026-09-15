@@ -15,7 +15,8 @@ import 'package:enterprise_ui_playground/core/data/flows_data.dart';
 import 'package:enterprise_ui_playground/core/models/sub_flow.dart';
 import 'package:enterprise_ui_playground/core/widgets/device_frame_preview.dart';
 
-const _fontDir = 'D:/Development/flutter/bin/cache/artifacts/material_fonts';
+const _fallbackFontDir =
+    'D:/Development/flutter/bin/cache/artifacts/material_fonts';
 const _maxDepth = 10;
 const _shotDir =
     'C:/Users/Devesh/AppData/Local/Temp/claude/D--flutter-enterprise-ui-playground/5fb8586c-2352-4e59-916f-8a06b13ed55d/scratchpad/shots';
@@ -31,8 +32,20 @@ const _maxCandidates = 40;
 const _fill = -1;
 
 Future<void> _loadFonts() async {
+  final flutterRoot = Platform.environment['FLUTTER_ROOT'];
+  final fontDirCandidates = <String>[
+    if (flutterRoot != null && flutterRoot.isNotEmpty)
+      '$flutterRoot/bin/cache/artifacts/material_fonts',
+    _fallbackFontDir,
+  ];
+  final fontDir = fontDirCandidates.firstWhere(
+    (dir) => Directory(dir).existsSync(),
+    orElse: () => '',
+  );
+  if (fontDir.isEmpty) return;
+
   ByteData read(String f) =>
-      ByteData.sublistView(File('$_fontDir/$f').readAsBytesSync());
+      ByteData.sublistView(File('$fontDir/$f').readAsBytesSync());
   const roboto = [
     'roboto-regular.ttf',
     'roboto-medium.ttf',
