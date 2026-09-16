@@ -1,5 +1,6 @@
 import 'package:enterprise_ui_playground/flows/01_account_management/logout/screens/logout_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_order&refunding/screens/order_tracking_screen.dart';
+import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_subscription/screens/cancelling_subscription_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -133,7 +134,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
         status: SubFlowStatus.built,
         screenBuilder: _subscribingUpgradingScreen,
       ),
-      SubFlow(slug: 'canceling-subscription', title: 'Canceling Subscription'),
+      SubFlow(slug: 'canceling-subscription', title: 'Canceling Subscription', status: SubFlowStatus.built, screenBuilder: _cancelingSubscriptionScreen),
       SubFlow(slug: 'redeeming', title: 'Redeeming'),
     ],
   ),
@@ -278,6 +279,8 @@ Widget _transferringScreen(BuildContext context) =>
     const TransferringHomeScreen();
 Widget _subscribingUpgradingScreen(BuildContext context) =>
     const SubscribingUpgradingHomeScreen();
+Widget _cancelingSubscriptionScreen(BuildContext context) =>
+    const CancellingSubscriptionHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
