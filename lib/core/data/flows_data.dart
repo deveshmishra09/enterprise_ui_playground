@@ -3,6 +3,7 @@ import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_or
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_subscription/screens/cancelling_subscription_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/redeeming/screens/redeeming_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/screens/copying_duplicating_home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:enterprise_ui_playground/core/models/app_flow.dart';
@@ -284,6 +285,8 @@ Widget _cancelingSubscriptionScreen(BuildContext context) =>
     const CancellingSubscriptionHomeScreen();
 Widget _redeemingHomeScreen(BuildContext context) =>
     const RedeemingHomeScreen();
+Widget _copyingDuplicatingHomeScreen(BuildContext context) =>
+    const CopyingDuplicatingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
