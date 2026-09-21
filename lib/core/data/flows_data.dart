@@ -152,7 +152,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     ],
     blurb: 'TODO(copy): creating, organizing, and consuming content.',
     subFlows: <SubFlow>[
-      SubFlow(slug: 'copying-duplicating', title: 'Copying & Duplicating'),
+      SubFlow(slug: 'copying-duplicating', title: 'Copying & Duplicating', status: SubFlowStatus.built, screenBuilder: _copyingDuplicatingHomeScreen),
       SubFlow(slug: 'importing-exporting', title: 'Importing & Exporting'),
       SubFlow(slug: 'uploading-downloading', title: 'Uploading & Downloading'),
       SubFlow(slug: 'adding-creating', title: 'Adding & Creating'),
