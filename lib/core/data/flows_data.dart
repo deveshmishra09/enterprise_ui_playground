@@ -3,6 +3,7 @@ import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_or
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_subscription/screens/cancelling_subscription_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/redeeming/screens/redeeming_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/adding&creating/screens/adding_creating_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/screens/copying_duplicating_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
@@ -157,7 +158,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'copying-duplicating', title: 'Copying & Duplicating', status: SubFlowStatus.built, screenBuilder: _copyingDuplicatingHomeScreen),
       SubFlow(slug: 'importing-exporting', title: 'Importing & Exporting', status: SubFlowStatus.built, screenBuilder: _importExportHomeScreen),
       SubFlow(slug: 'uploading-downloading', title: 'Uploading & Downloading', status: SubFlowStatus.built, screenBuilder: _uploadingDownloadingHomeScreen),
-      SubFlow(slug: 'adding-creating', title: 'Adding & Creating'),
+      SubFlow(slug: 'adding-creating', title: 'Adding & Creating', status: SubFlowStatus.built, screenBuilder: _addingCreatingHomeScreen),
       SubFlow(slug: 'drawing', title: 'Drawing'),
       SubFlow(slug: 'editing-updating', title: 'Editing & Updating'),
       SubFlow(slug: 'deleting-removing', title: 'Deleting & Removing'),
@@ -293,6 +294,8 @@ Widget _importExportHomeScreen(BuildContext context) =>
     const ImportExportHomeScreen();
 Widget _uploadingDownloadingHomeScreen(BuildContext context) =>
     const UploadingDownlodingHomeScreen();
+Widget _addingCreatingHomeScreen(BuildContext context) =>
+    const AddingCreatingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
