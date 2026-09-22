@@ -5,6 +5,7 @@ import 'package:enterprise_ui_playground/flows/02_commerce&finance/redeeming/scr
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/screens/copying_duplicating_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:enterprise_ui_playground/core/models/app_flow.dart';
@@ -155,7 +156,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     subFlows: <SubFlow>[
       SubFlow(slug: 'copying-duplicating', title: 'Copying & Duplicating', status: SubFlowStatus.built, screenBuilder: _copyingDuplicatingHomeScreen),
       SubFlow(slug: 'importing-exporting', title: 'Importing & Exporting', status: SubFlowStatus.built, screenBuilder: _importExportHomeScreen),
-      SubFlow(slug: 'uploading-downloading', title: 'Uploading & Downloading'),
+      SubFlow(slug: 'uploading-downloading', title: 'Uploading & Downloading', status: SubFlowStatus.built, screenBuilder: _uploadingDownloadingHomeScreen),
       SubFlow(slug: 'adding-creating', title: 'Adding & Creating'),
       SubFlow(slug: 'drawing', title: 'Drawing'),
       SubFlow(slug: 'editing-updating', title: 'Editing & Updating'),
@@ -290,6 +291,8 @@ Widget _copyingDuplicatingHomeScreen(BuildContext context) =>
     const CopyingDuplicatingHomeScreen();
 Widget _importExportHomeScreen(BuildContext context) =>
     const ImportExportHomeScreen();
+Widget _uploadingDownloadingHomeScreen(BuildContext context) =>
+    const UploadingDownlodingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
