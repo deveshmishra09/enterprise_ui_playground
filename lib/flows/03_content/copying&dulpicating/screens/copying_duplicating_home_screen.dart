@@ -30,16 +30,7 @@ class _CopyingDuplicatingHomeScreenState
                       isScrollControlled: true,
                       constraints: BoxConstraints(
                         // ignore: deprecated_member_use
-                        maxHeight:
-                            MediaQueryData.fromView(
-                              WidgetsBinding.instance.window,
-                            ).size.height *
-                            0.4,
-                        minHeight:
-                            MediaQueryData.fromView(
-                              WidgetsBinding.instance.window,
-                            ).size.height *
-                            0.4,
+                        maxHeight: MediaQuery.of(context).size.height * 0.8,
                       ),
                       builder: (BuildContext context) {
                         return const GroupOrderBottomSheet();

@@ -21,7 +21,7 @@ class _GroupOrderBottomSheetState extends State<GroupOrderBottomSheet> {
         left: 16.0,
         right: 16.0,
         top: 24.0,
-        bottom: 24.0,
+        bottom: 16.0,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -79,7 +79,7 @@ class _GroupOrderBottomSheetState extends State<GroupOrderBottomSheet> {
                         borderRadius: BorderRadius.circular(24),
                       ),
                       margin: EdgeInsets.only(
-                        bottom:
+                        top:
                             MediaQuery.of(context).size.height -
                             120, // Adjusted positioning below header top bar
                         left: 24,

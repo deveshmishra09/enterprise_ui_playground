@@ -4,6 +4,7 @@ import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_su
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/redeeming/screens/redeeming_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/screens/copying_duplicating_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:enterprise_ui_playground/core/models/app_flow.dart';
@@ -153,7 +154,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
     blurb: 'TODO(copy): creating, organizing, and consuming content.',
     subFlows: <SubFlow>[
       SubFlow(slug: 'copying-duplicating', title: 'Copying & Duplicating', status: SubFlowStatus.built, screenBuilder: _copyingDuplicatingHomeScreen),
-      SubFlow(slug: 'importing-exporting', title: 'Importing & Exporting'),
+      SubFlow(slug: 'importing-exporting', title: 'Importing & Exporting', status: SubFlowStatus.built, screenBuilder: _importExportHomeScreen),
       SubFlow(slug: 'uploading-downloading', title: 'Uploading & Downloading'),
       SubFlow(slug: 'adding-creating', title: 'Adding & Creating'),
       SubFlow(slug: 'drawing', title: 'Drawing'),
@@ -287,6 +288,8 @@ Widget _redeemingHomeScreen(BuildContext context) =>
     const RedeemingHomeScreen();
 Widget _copyingDuplicatingHomeScreen(BuildContext context) =>
     const CopyingDuplicatingHomeScreen();
+Widget _importExportHomeScreen(BuildContext context) =>
+    const ImportExportHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
