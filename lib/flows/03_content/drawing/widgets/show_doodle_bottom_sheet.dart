@@ -115,7 +115,7 @@ class _ShowDoodleBottomSheetState extends State<ShowDoodleBottomSheet> {
                   borderRadius: BorderRadius.circular(24.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.04),
+                      color: Colors.black.withValues(alpha: 0.04),
                       blurRadius: 10,
                       offset: const Offset(0, 4),
                     ),
@@ -134,7 +134,7 @@ class _ShowDoodleBottomSheetState extends State<ShowDoodleBottomSheet> {
                       top: 15,
                       left: 15,
                       child: CircleAvatar(
-                        backgroundColor: Colors.white.withOpacity(0.9),
+                        backgroundColor: Colors.white.withValues(alpha: 0.9),
                         child: IconButton(
                           icon: const Icon(
                             Icons.refresh,
@@ -160,7 +160,7 @@ class _ShowDoodleBottomSheetState extends State<ShowDoodleBottomSheet> {
                             vertical: 8,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.04),
+                            color: Colors.black.withValues(alpha: 0.04),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Row(

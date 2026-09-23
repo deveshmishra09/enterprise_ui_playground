@@ -409,7 +409,7 @@ class _SellOrGiveAwayBottomSheetState extends State<SellOrGiveAwayBottomSheet> {
                     const SizedBox(width: 8),
                     Switch(
                       value: _isFree,
-                      activeColor: Colors.white,
+                      activeThumbColor: Colors.white,
                       activeTrackColor: const Color.fromARGB(255, 34, 105, 37),
                       inactiveThumbColor: Colors.white,
                       inactiveTrackColor: Colors.grey[300],

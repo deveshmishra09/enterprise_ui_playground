@@ -104,8 +104,8 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
-                      color: Colors.white.withOpacity(
-                        0.8,
+                      color: Colors.white.withValues(
+                        alpha: 0.8,
                       ), // Slightly transparent
                     ),
                     child: Column(
@@ -154,7 +154,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                                 Text(
                                   '2k ratings',
                                   style: TextStyle(
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: Colors.black.withValues(alpha: 0.6),
                                     fontSize: 12,
                                     decoration: TextDecoration.underline,
                                   ),
@@ -205,7 +205,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                                 vertical: 8,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withValues(alpha: 0.8),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: const Row(
@@ -243,7 +243,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                             Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withValues(alpha: 0.8),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: const Icon(
@@ -258,7 +258,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                             Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withValues(alpha: 0.8),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: const Icon(
@@ -293,7 +293,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                         borderRadius: BorderRadius.circular(10),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.2),
+                            color: Colors.grey.withValues(alpha: 0.2),
                             spreadRadius: 2,
                             blurRadius: 5,
                             offset: const Offset(0, 3),
@@ -377,7 +377,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                         borderRadius: BorderRadius.circular(24.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withValues(alpha: 0.05),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -426,7 +426,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                                             ? [
                                                 BoxShadow(
                                                   color: Colors.black
-                                                      .withOpacity(0.05),
+                                                      .withValues(alpha: 0.05),
                                                   blurRadius: 4,
                                                   offset: const Offset(0, 2),
                                                 ),
@@ -467,7 +467,7 @@ class _RedeemingHomeScreenState extends State<RedeemingHomeScreen> {
                                             ? [
                                                 BoxShadow(
                                                   color: Colors.black
-                                                      .withOpacity(0.05),
+                                                      .withValues(alpha: 0.05),
                                                   blurRadius: 4,
                                                   offset: const Offset(0, 2),
                                                 ),

@@ -31,7 +31,7 @@ class _SubscribingUpgradingHomeScreenState
               primaryColor: Colors.blueAccent,
               onSelected: (index) {
                 // Handle document selection
-                print('Selected document index: $index');
+                debugPrint('Selected document index: $index');
               },
             ),
             Text(

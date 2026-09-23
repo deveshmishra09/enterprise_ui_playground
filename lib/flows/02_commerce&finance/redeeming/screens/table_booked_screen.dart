@@ -77,7 +77,7 @@ class _TableBookedScreenState extends State<TableBookedScreen> {
                   border: Border.all(color: Colors.grey.shade300),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: Colors.grey.withValues(alpha: 0.5),
                       blurRadius: 4,
                       offset: const Offset(0, 2),
                     ),
@@ -131,7 +131,7 @@ class _TableBookedScreenState extends State<TableBookedScreen> {
                               ),
                             ),
                             Text(
-                              '${widget.selectedTime ?? ''}',
+                              widget.selectedTime ?? '',
                               style: TextStyle(
                                 color: Colors.grey[700],
                                 fontSize: 16,
@@ -207,7 +207,7 @@ class _TableBookedScreenState extends State<TableBookedScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            '${widget.selectedOffer ?? ''}',
+                            widget.selectedOffer ?? '',
                             style: TextStyle(
                               color: Colors.grey[700],
                               fontSize: 16,

@@ -127,8 +127,6 @@ class _DateTimeScreenState extends State<DateTimeScreen> {
                   itemCount: 24,
                   itemBuilder: (context, index) {
                     final bool isSelected = _timeCardIdx == index;
-                    final String time =
-                        '${index.toString().padLeft(2, '0')}:00';
                     return GestureDetector(
                       onTap: () {
                         setState(() {
