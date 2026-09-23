@@ -48,45 +48,42 @@ class _AdditionalFieldsBottomSheetState
             ),
             const SizedBox(height: 20),
 
-            Column(
-              children: [
-                Row(
-                  children: [
-                    Text('Reference Number', style: TextStyle(fontSize: 18)),
-                    const Spacer(),
-                    Radio<bool>(
-                      value: true,
-                      groupValue: isCheckedReferenceNumber,
-                      onChanged: (value) {
-                        setState(() {
-                          if (isCheckedReasonForPayment == true) {
-                            isCheckedReasonForPayment = false;
-                          }
-                          isCheckedReferenceNumber = true;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text('Reason for payment', style: TextStyle(fontSize: 18)),
-                    const Spacer(),
-                    Radio<bool>(
-                      value: true,
-                      groupValue: isCheckedReasonForPayment,
-                      onChanged: (value) {
-                        setState(() {
-                          if (isCheckedReferenceNumber == true) {
-                            isCheckedReferenceNumber = false;
-                          }
-                          isCheckedReasonForPayment = true;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ],
+            RadioGroup<String>(
+              groupValue: isCheckedReferenceNumber == true
+                  ? 'reference'
+                  : isCheckedReasonForPayment == true
+                  ? 'reason'
+                  : null,
+              onChanged: (value) {
+                setState(() {
+                  isCheckedReferenceNumber = value == 'reference';
+                  isCheckedReasonForPayment = value == 'reason';
+                });
+              },
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Text(
+                        'Reference Number',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      const Spacer(),
+                      const Radio<String>(value: 'reference'),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text(
+                        'Reason for payment',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      const Spacer(),
+                      const Radio<String>(value: 'reason'),
+                    ],
+                  ),
+                ],
+              ),
             ),
             const Spacer(),
             ElevatedButton(

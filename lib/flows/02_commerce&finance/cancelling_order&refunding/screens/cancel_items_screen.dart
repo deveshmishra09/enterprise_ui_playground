@@ -15,10 +15,10 @@ class _CancelItemsScreenState extends State<CancelItemsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final String _productName =
+    final String productName =
         'HydroJug Traveler - 40 oz \n Water Bottle with Handle & \n Flip';
-    final String _productPrice = '\$29.99';
-    final String _productQuantity = '1';
+    final String productPrice = '\$29.99';
+    final String productQuantity = '1';
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = constraints.maxWidth;
@@ -154,14 +154,14 @@ class _CancelItemsScreenState extends State<CancelItemsScreen> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            _productName,
+                                            productName,
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           Text(
-                                            _productPrice,
+                                            productPrice,
                                             style: TextStyle(
                                               fontSize: 14,
                                               color: Colors.red,
@@ -175,7 +175,7 @@ class _CancelItemsScreenState extends State<CancelItemsScreen> {
                                                 style: TextStyle(fontSize: 14),
                                               ),
                                               Text(
-                                                _productQuantity,
+                                                productQuantity,
                                                 style: TextStyle(fontSize: 14),
                                               ),
                                             ],

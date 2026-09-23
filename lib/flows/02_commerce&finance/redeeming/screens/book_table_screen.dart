@@ -135,7 +135,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.03),
+                              color: Colors.black.withValues(alpha: 0.03),
                               blurRadius: 4,
                               offset: const Offset(0, 2),
                             ),
@@ -266,7 +266,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.02),
+                        color: Colors.black.withValues(alpha: 0.02),
                         blurRadius: 3,
                         offset: const Offset(0, 1),
                       ),
@@ -383,6 +383,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -407,7 +408,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
             color: const Color.fromARGB(255, 233, 228, 245),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color: Colors.grey.withValues(alpha: 0.5),
                 spreadRadius: 2,
                 blurRadius: 5,
                 offset: const Offset(0, 3), // changes position of shadow
@@ -424,7 +425,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                   borderRadius: BorderRadius.circular(15.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: Colors.grey.withValues(alpha: 0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3), // changes position of shadow
@@ -454,7 +455,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                   borderRadius: BorderRadius.circular(15.0),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: Colors.grey.withValues(alpha: 0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: const Offset(0, 3), // changes position of shadow
@@ -490,7 +491,7 @@ class _BookTableScreenState extends State<BookTableScreen> {
                         border: Border.all(color: Colors.grey.shade300),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
+                            color: Colors.grey.withValues(alpha: 0.5),
                             blurRadius: 4,
                             offset: const Offset(0, 2),
                           ),

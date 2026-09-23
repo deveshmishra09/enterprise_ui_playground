@@ -239,7 +239,7 @@ class _PickYourPlanScreenState extends State<PickYourPlanScreen> {
               itemCount: selectedPlan == 'Essential'
                   ? essentialPlanFeatures.length
                   : premiumPlanFeatures.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 16),
+              separatorBuilder: (_, _) => const SizedBox(height: 16),
               itemBuilder: (context, index) {
                 // Extra safety layer check
                 if (selectedPlan == 'Essential' &&

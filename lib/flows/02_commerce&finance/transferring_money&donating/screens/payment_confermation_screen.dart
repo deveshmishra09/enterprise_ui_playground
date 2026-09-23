@@ -1,4 +1,3 @@
-import 'package:enterprise_ui_playground/core/navigation/subflow_reset_scope.dart';
 import 'package:flutter/material.dart';
 
 class PaymentConfermationScreen extends StatefulWidget {
@@ -114,7 +113,7 @@ class _PaymentConfermationScreenState extends State<PaymentConfermationScreen> {
                   borderRadius: BorderRadius.circular(20),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
+                      color: Colors.grey.withValues(alpha: 0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
                       offset: Offset(0, 3), // changes position of shadow
