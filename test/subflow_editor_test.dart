@@ -6,13 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:enterprise_ui_playground/app.dart';
 import 'package:enterprise_ui_playground/core/theme/theme_controller.dart';
-import 'package:enterprise_ui_playground/core/widgets/coming_soon_screen.dart';
 import 'package:enterprise_ui_playground/core/widgets/device_frame_preview.dart';
 import 'package:enterprise_ui_playground/core/widgets/site_footer.dart';
 import 'package:enterprise_ui_playground/features/subflow_editor/subflow_editor_page.dart';
 import 'package:enterprise_ui_playground/features/subflow_editor/widgets/subflow_list_panel.dart';
 import 'package:enterprise_ui_playground/flows/01_account_management/login/screens/login_screen.dart'
     show LoginScreen;
+import 'package:enterprise_ui_playground/flows/03_content/drawing/screens/drawing_home_screen.dart';
 
 Future<void> _pumpAppAt(
   WidgetTester tester,
@@ -93,15 +93,14 @@ void main() {
     );
   });
 
-  testWidgets('a coming-soon subflow shows the placeholder in the frame', (
+  testWidgets('a built drawing subflow shows its screen in the frame', (
     tester,
   ) async {
     await _pumpAppAt(tester, '/flows/content/drawing');
 
     expect(find.byType(DeviceFramePreview), findsOneWidget);
-    expect(find.byType(ComingSoonScreen), findsOneWidget);
-    expect(find.text('Coming soon'), findsOneWidget);
-    expect(find.text('Content · Drawing'), findsOneWidget);
+    expect(find.byType(DrawingHomeScreen), findsOneWidget);
+    expect(find.text('Doodle'), findsOneWidget);
     expect(find.text('Preview'), findsOneWidget); // preview header variant
   });
 
