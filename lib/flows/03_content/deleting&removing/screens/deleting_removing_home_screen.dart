@@ -1,12 +1,12 @@
 import 'package:enterprise_ui_playground/flows/03_content/deleting&removing/widgets/create_poll_bottom_sheet.dart';
-import 'package:enterprise_ui_playground/flows/03_content/drawing/screens/doodle_screen.dart';
 import 'package:flutter/material.dart';
 
 class DeletingRemovingHomeScreen extends StatefulWidget {
   const DeletingRemovingHomeScreen({super.key});
 
   @override
-  State<DeletingRemovingHomeScreen> createState() => _eletingRemovingHomeScreenState();
+  State<DeletingRemovingHomeScreen> createState() =>
+      _DeletingRemovingHomeScreenState();
 }
 
 IconData iconName = Icons.description_sharp;
@@ -84,7 +84,7 @@ final List<Map<String, dynamic>> containerData = [
   },
 ];
 
-class _eletingRemovingHomeScreenState extends State<DeletingRemovingHomeScreen> {
+class _DeletingRemovingHomeScreenState extends State<DeletingRemovingHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

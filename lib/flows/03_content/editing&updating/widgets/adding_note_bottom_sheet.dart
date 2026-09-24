@@ -8,8 +8,8 @@ class AddingNoteBottomSheet extends StatefulWidget {
 }
 
 class _AddingNoteBottomSheetState extends State<AddingNoteBottomSheet> {
-  TextEditingController _noteController = TextEditingController();
-  TextEditingController _contentController = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
+  final TextEditingController _contentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

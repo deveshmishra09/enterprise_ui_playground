@@ -4,6 +4,7 @@ import 'package:enterprise_ui_playground/flows/02_commerce&finance/cancelling_su
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/redeeming/screens/redeeming_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/adding&creating/screens/adding_creating_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/archiving/screens/archiving_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/screens/copying_duplicating_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/deleting&removing/screens/deleting_removing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/drawing/screens/drawing_home_screen.dart';
@@ -165,7 +166,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'drawing', title: 'Drawing', status: SubFlowStatus.built, screenBuilder: _drawingHomeScreen),
       SubFlow(slug: 'editing-updating', title: 'Editing & Updating', status: SubFlowStatus.built, screenBuilder: _editingUpdatingHomeScreen),
       SubFlow(slug: 'deleting-removing', title: 'Deleting & Removing', status: SubFlowStatus.built, screenBuilder: _deletingRemovingHomeScreen),
-      SubFlow(slug: 'archiving', title: 'Archiving'),
+      SubFlow(slug: 'archiving', title: 'Archiving', status: SubFlowStatus.built, screenBuilder: _archivingHomeScreen),
       SubFlow(slug: 'favoriting-pinning', title: 'Favoriting & Pinning'),
       SubFlow(slug: 'filtering-sorting', title: 'Filtering & Sorting'),
       SubFlow(slug: 'moving', title: 'Moving'),
@@ -305,6 +306,8 @@ Widget _editingUpdatingHomeScreen(BuildContext context) =>
     const EditingUpdatingHomeScreen();
 Widget _deletingRemovingHomeScreen(BuildContext context) =>
     const DeletingRemovingHomeScreen();
+Widget _archivingHomeScreen(BuildContext context) =>
+    const ArchivingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 

@@ -90,6 +90,10 @@ flutter:
     - assets/images/torye_img.webp
     - assets/images/event_poster.jpg
     - lib/flows/03_content/copying&dulpicating/assets/images/
+    - lib/flows/03_content/archiving/assets/images/bottoms/
+    - lib/flows/03_content/archiving/assets/images/footwear/
+    - lib/flows/03_content/archiving/assets/images/fullbody/
+    - lib/flows/03_content/archiving/assets/images/tops/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
