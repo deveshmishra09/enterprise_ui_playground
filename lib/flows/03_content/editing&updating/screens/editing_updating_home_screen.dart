@@ -10,11 +10,11 @@ class EditingUpdatingHomeScreen extends StatefulWidget {
       _EditingUpdatingHomeScreenState();
 }
 
-String title = 'Note';
-String content =
-    'This is the Editing & Updating Home Screen. Here you can edit and update your content.';
-
 class _EditingUpdatingHomeScreenState extends State<EditingUpdatingHomeScreen> {
+  String title = 'Note';
+  String content =
+      'This is the Editing & Updating Home Screen. Here you can edit and update your content.';
+  Color color = Colors.black;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +57,9 @@ class _EditingUpdatingHomeScreenState extends State<EditingUpdatingHomeScreen> {
                             PopupMenuButton<String>(
                               onSelected: (value) async {
                                 if (value == 'edit') {
-                                  final result = await showModalBottomSheet(
+                                  final result = await showModalBottomSheet<
+                                    (String, Color)
+                                  >(
                                     context: context,
                                     isScrollControlled: true,
                                     constraints: BoxConstraints(
@@ -68,11 +70,10 @@ class _EditingUpdatingHomeScreenState extends State<EditingUpdatingHomeScreen> {
                                     builder: (context) =>
                                         const RenameBottomSheet(),
                                   );
-                                  if (result != null &&
-                                      result is String &&
-                                      mounted) {
+                                  if (result != null && mounted) {
                                     setState(() {
-                                      title = result;
+                                      title = result.$1;
+                                      color = result.$2;
                                     });
                                   }
                                 } else if (value == 'delete') {
@@ -190,7 +191,10 @@ class _EditingUpdatingHomeScreenState extends State<EditingUpdatingHomeScreen> {
                               ),
                               child: Text(
                                 content,
-                                style: Theme.of(context).textTheme.bodyLarge,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: color,
+                                ),
                               ),
                             ),
                           ),

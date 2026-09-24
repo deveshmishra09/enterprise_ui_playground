@@ -5,6 +5,7 @@ import 'package:enterprise_ui_playground/flows/02_commerce&finance/redeeming/scr
 import 'package:enterprise_ui_playground/flows/02_commerce&finance/subscribing&upgrading/screens/subscribing_upgrading_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/adding&creating/screens/adding_creating_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/screens/copying_duplicating_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/deleting&removing/screens/deleting_removing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/drawing/screens/drawing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/editing&updating/screens/editing_updating_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
@@ -163,7 +164,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'adding-creating', title: 'Adding & Creating', status: SubFlowStatus.built, screenBuilder: _addingCreatingHomeScreen),
       SubFlow(slug: 'drawing', title: 'Drawing', status: SubFlowStatus.built, screenBuilder: _drawingHomeScreen),
       SubFlow(slug: 'editing-updating', title: 'Editing & Updating', status: SubFlowStatus.built, screenBuilder: _editingUpdatingHomeScreen),
-      SubFlow(slug: 'deleting-removing', title: 'Deleting & Removing'),
+      SubFlow(slug: 'deleting-removing', title: 'Deleting & Removing', status: SubFlowStatus.built, screenBuilder: _deletingRemovingHomeScreen),
       SubFlow(slug: 'archiving', title: 'Archiving'),
       SubFlow(slug: 'favoriting-pinning', title: 'Favoriting & Pinning'),
       SubFlow(slug: 'filtering-sorting', title: 'Filtering & Sorting'),
@@ -302,6 +303,8 @@ Widget _drawingHomeScreen(BuildContext context) =>
     const DrawingHomeScreen();
 Widget _editingUpdatingHomeScreen(BuildContext context) =>
     const EditingUpdatingHomeScreen();
+Widget _deletingRemovingHomeScreen(BuildContext context) =>
+    const DeletingRemovingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
