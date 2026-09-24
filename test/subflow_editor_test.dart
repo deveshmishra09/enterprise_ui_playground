@@ -42,9 +42,11 @@ Future<void> _pumpAppAt(
 /// show at phone width inside the frame — their bug, not ours (docs/09 Phase 4).
 /// They still render. Drain the accumulated layout errors.
 void _drainLegacyDemoErrors(WidgetTester tester) {
-  for (var error = tester.takeException(); error != null; ) {
-    debugPrint('[ignored legacy demo error] '
-        '${error.toString().split('\n').first}');
+  for (var error = tester.takeException(); error != null;) {
+    debugPrint(
+      '[ignored legacy demo error] '
+      '${error.toString().split('\n').first}',
+    );
     error = tester.takeException();
   }
 }
@@ -121,7 +123,7 @@ void main() {
       GoRouterState.of(tester.element(find.byType(SubflowEditorPage))).uri.path,
       '/flows/content/archiving',
     );
-    expect(find.text('Content · Archiving'), findsOneWidget);
+    expect(find.text('Preview'), findsOneWidget);
   });
 
   testWidgets('narrow layout swaps the rail for a chip strip', (tester) async {

@@ -118,7 +118,7 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                       ),
                       const SizedBox(height: 10.0),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
                             children: [
@@ -138,7 +138,6 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(width: 20.0),
                           Column(
                             children: [
                               Text(
@@ -157,7 +156,6 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                               ),
                             ],
                           ),
-                          const SizedBox(width: 20.0),
                           Column(
                             children: [
                               Text(
