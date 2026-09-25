@@ -347,27 +347,53 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                   itemCount: visibleImages.length,
                   itemBuilder: (context, index) {
                     final imagePath = visibleImages[index];
+                    final imageCategory = categoryImages.entries
+                        .firstWhere((entry) => entry.value.contains(imagePath))
+                        .key;
                     final isArchived = archivedItems.any(
                       (item) => item['image'] == imagePath,
                     );
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: isArchived
-                            ? const Border(
-                                bottom: BorderSide(
-                                  color: Colors.blue,
-                                  width: 4.0,
-                                ),
-                              )
-                            : null,
-                      ),
-                      child: Center(
-                        child: Image.asset(
-                          imagePath,
-                          fit: BoxFit.contain,
-                        ), // Replace with your actual item content
+                    return GestureDetector(
+                      onTap: () async {
+                        final result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SelectAndArchiveScreen(
+                              itemsCount: visibleImages.length,
+                              outfitsCount: visibleArchivedItems.length,
+                              initialCategory: imageCategory,
+                            ),
+                          ),
+                        );
+                        if (result is Map<String, String> &&
+                            mounted &&
+                            !archivedItems.any(
+                              (item) => item['image'] == result['image'],
+                            )) {
+                          setState(() {
+                            archivedItems.add(result);
+                          });
+                        }
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade100,
+                          borderRadius: BorderRadius.circular(8.0),
+                          border: isArchived
+                              ? const Border(
+                                  bottom: BorderSide(
+                                    color: Colors.blue,
+                                    width: 4.0,
+                                  ),
+                                )
+                              : null,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            imagePath,
+                            fit: BoxFit.contain,
+                          ), // Replace with your actual item content
+                        ),
                       ),
                     );
                   },
@@ -378,22 +404,7 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final result = await Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SelectAndArchiveScreen(
-                itemsCount: visibleImages.length,
-                outfitsCount: visibleArchivedItems.length,
-              ),
-            ),
-          );
-          if (result is Map<String, String> && mounted) {
-            setState(() {
-              archivedItems.add(result);
-            });
-          }
-        },
+        onPressed: () {},
         backgroundColor: Color(0xFF9ABF74),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),

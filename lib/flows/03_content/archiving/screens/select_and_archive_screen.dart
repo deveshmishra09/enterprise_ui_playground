@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class SelectAndArchiveScreen extends StatefulWidget {
   final int itemsCount;
   final int outfitsCount;
+  final String initialCategory;
   const SelectAndArchiveScreen({
     super.key,
     required this.itemsCount,
     required this.outfitsCount,
+    required this.initialCategory,
   });
 
   @override
@@ -74,8 +76,18 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
   int selectedNavigationButton = 4;
   String? selectedImage;
 
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory = widget.initialCategory;
+  }
+
   List<MapEntry<String, String>> get imageEntries => categoryImages.entries
-      .where((entry) => entry.key != 'All')
+      .where(
+        (entry) =>
+            entry.key != 'All' &&
+            (selectedCategory == 'All' || entry.key == selectedCategory),
+      )
       .expand(
         (entry) =>
             entry.value.map((imagePath) => MapEntry(entry.key, imagePath)),
@@ -94,8 +106,14 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: Colors.black, size: 30.0),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     Icon(Icons.more_vert, color: Colors.black, size: 30.0),
                   ],
                 ),
