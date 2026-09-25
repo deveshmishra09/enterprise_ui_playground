@@ -10,20 +10,79 @@ class ArchivingHomeScreen extends StatefulWidget {
 
 class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
   List<String> categories = ['All', 'Tops', 'Bottoms', 'footwear', 'Full body'];
-  final Map<String, String> categoryImages = {
-    'All':
-        'lib/flows/03_content/archiving/assets/images/tops/crean_band_collar_overshirt.jpg',
-    'Tops':
-        'lib/flows/03_content/archiving/assets/images/tops/crean_band_collar_overshirt.jpg',
-    'Bottoms':
-        'lib/flows/03_content/archiving/assets/images/bottoms/wide_lag_jeans.jpg',
-    'footwear':
-        'lib/flows/03_content/archiving/assets/images/footwear/black_boot.jpg',
-    'Full body':
-        'lib/flows/03_content/archiving/assets/images/fullbody/black_ribbed_maxi_dress.jpg',
+  final Map<String, List<String>> categoryImages = {
+    'All': [
+      'lib/flows/03_content/archiving/assets/images/fullbody/black_ribbed_maxi_dress.jpg',
+    ],
+    'Tops': [
+      'lib/flows/03_content/archiving/assets/images/tops/crean_band_collar_overshirt.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_1.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_2.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_3.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_4.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_5.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_6.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_7.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/white_top.jpg',
+    ],
+    'Bottoms': [
+      'lib/flows/03_content/archiving/assets/images/bottoms/wide_lag_jeans.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img1.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img2.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img3.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img4.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img5.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img6.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img7.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img8.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img9.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img10.jpg',
+    ],
+    'footwear': [
+      'lib/flows/03_content/archiving/assets/images/footwear/black_boot.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img1.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img2.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img3.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img4.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img5.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img6.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img7.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img8.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img9.jpg',
+    ],
+    'Full body': [
+      'lib/flows/03_content/archiving/assets/images/fullbody/black_ribbed_maxi_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/black_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/bodycon_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/bride_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/carnival_cloth_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/cherry_red_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/formal_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/fullbody_slimsuit.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/long_mexi_bodycon_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/prom_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/red_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/wedding_dress.jpg',
+    ],
   };
-  final List<String> archivedCategories = [];
+  final List<Map<String, String>> archivedItems = [];
   int selectedNavigationButton = 4;
+  String selectedCategory = 'All';
+
+  List<String> get visibleImages => selectedCategory == 'All'
+      ? categoryImages.entries
+            .where((entry) => entry.key != 'All')
+            .expand((entry) => entry.value)
+            .toList()
+      : categoryImages[selectedCategory] ?? <String>[];
+
+  List<Map<String, String>> get visibleArchivedItems =>
+      selectedCategory == 'All'
+      ? archivedItems
+      : archivedItems
+            .where((item) => item['category'] == selectedCategory)
+            .toList();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,14 +158,14 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                           Column(
                             children: [
                               Text(
-                                'Mr Devesh',
+                                'Mis. Div',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
-                                '@mrdevesh',
+                                '@misdiv',
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
@@ -123,7 +182,7 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                           Column(
                             children: [
                               Text(
-                                '77',
+                                visibleImages.length.toString(),
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
@@ -141,7 +200,7 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                           Column(
                             children: [
                               Text(
-                                '8',
+                                categories.length.toString(),
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
@@ -182,7 +241,7 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                 const SizedBox(height: 16.0),
                 SizedBox(height: 72.0, child: _buildCategoryChips()),
                 const SizedBox(height: 16.0),
-                if (archivedCategories.isNotEmpty) ...[
+                if (visibleArchivedItems.isNotEmpty) ...[
                   Row(
                     children: [
                       Text(
@@ -205,10 +264,10 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                             mainAxisExtent: 140.0,
                             mainAxisSpacing: 12.0,
                           ),
-                      itemCount: archivedCategories.length,
+                      itemCount: visibleArchivedItems.length,
                       itemBuilder: (context, index) {
                         return Image.asset(
-                          categoryImages[archivedCategories[index]]!,
+                          visibleArchivedItems[index]['image']!,
                           fit: BoxFit.cover,
                         );
                       },
@@ -285,17 +344,29 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
                   ),
-                  itemCount: categoryImages
-                      .length, // Replace with your actual item count
+                  itemCount: visibleImages.length,
                   itemBuilder: (context, index) {
+                    final imagePath = visibleImages[index];
+                    final isArchived = archivedItems.any(
+                      (item) => item['image'] == imagePath,
+                    );
                     return Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(8.0),
+                        border: isArchived
+                            ? const Border(
+                                bottom: BorderSide(
+                                  color: Colors.blue,
+                                  width: 4.0,
+                                ),
+                              )
+                            : null,
                       ),
                       child: Center(
                         child: Image.asset(
-                          categoryImages[categories[index]]!,
+                          imagePath,
+                          fit: BoxFit.contain,
                         ), // Replace with your actual item content
                       ),
                     );
@@ -311,12 +382,15 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
           final result = await Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const SelectAndArchiveScreen(),
+              builder: (context) => SelectAndArchiveScreen(
+                itemsCount: visibleImages.length,
+                outfitsCount: visibleArchivedItems.length,
+              ),
             ),
           );
-          if (result != null && mounted) {
+          if (result is Map<String, String> && mounted) {
             setState(() {
-              archivedCategories.add(result as String);
+              archivedItems.add(result);
             });
           }
         },
@@ -371,33 +445,50 @@ class _ArchivingHomeScreenState extends State<ArchivingHomeScreen> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: categories.map((category) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                    vertical: 8.0,
+          return GestureDetector(
+            onTap: () {
+              // Handle category selection
+              setState(() {
+                // You can implement your logic for selecting a category here
+                selectedCategory = category;
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0,
+                      vertical: 8.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: selectedCategory == category
+                            ? Colors.blue
+                            : Colors.grey,
+                        width: selectedCategory == category ? 3.0 : 1.0,
+                      ),
+                    ),
+                    child: Image.asset(
+                      categoryImages[category]!.first,
+                      width: 24.0,
+                      height: 24.0,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.grey),
+                  const SizedBox(height: 4.0),
+                  Text(
+                    category,
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  child: Image.asset(
-                    categoryImages[category]!,
-                    width: 24.0,
-                    height: 24.0,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(height: 4.0),
-                Text(
-                  category,
-                  style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         }).toList(),

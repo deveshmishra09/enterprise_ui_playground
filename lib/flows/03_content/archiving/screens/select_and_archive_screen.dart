@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SelectAndArchiveScreen extends StatefulWidget {
-  const SelectAndArchiveScreen({super.key});
+  final int itemsCount;
+  final int outfitsCount;
+  const SelectAndArchiveScreen({
+    super.key,
+    required this.itemsCount,
+    required this.outfitsCount,
+  });
 
   @override
   State<SelectAndArchiveScreen> createState() => _SelectAndArchiveScreenState();
@@ -10,19 +16,72 @@ class SelectAndArchiveScreen extends StatefulWidget {
 class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
   List<String> categories = ['All', 'Tops', 'Bottoms', 'footwear', 'Full body'];
   String? selectedCategory;
-  final Map<String, String> categoryImages = {
-    'All':
-        'lib/flows/03_content/archiving/assets/images/tops/crean_band_collar_overshirt.jpg',
-    'Tops':
-        'lib/flows/03_content/archiving/assets/images/tops/crean_band_collar_overshirt.jpg',
-    'Bottoms':
-        'lib/flows/03_content/archiving/assets/images/bottoms/wide_lag_jeans.jpg',
-    'footwear':
-        'lib/flows/03_content/archiving/assets/images/footwear/black_boot.jpg',
-    'Full body':
-        'lib/flows/03_content/archiving/assets/images/fullbody/black_ribbed_maxi_dress.jpg',
+  final Map<String, List<String>> categoryImages = {
+    'All': [
+      'lib/flows/03_content/archiving/assets/images/fullbody/black_ribbed_maxi_dress.jpg',
+    ],
+    'Tops': [
+      'lib/flows/03_content/archiving/assets/images/tops/crean_band_collar_overshirt.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_1.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_2.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_3.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_4.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_5.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_6.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/top_7.jpg',
+      'lib/flows/03_content/archiving/assets/images/tops/white_top.jpg',
+    ],
+    'Bottoms': [
+      'lib/flows/03_content/archiving/assets/images/bottoms/wide_lag_jeans.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img1.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img2.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img3.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img4.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img5.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img6.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img7.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img8.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img9.jpg',
+      'lib/flows/03_content/archiving/assets/images/bottoms/img10.jpg',
+    ],
+    'footwear': [
+      'lib/flows/03_content/archiving/assets/images/footwear/black_boot.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img1.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img2.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img3.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img4.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img5.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img6.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img7.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img8.jpg',
+      'lib/flows/03_content/archiving/assets/images/footwear/img9.jpg',
+    ],
+    'Full body': [
+      'lib/flows/03_content/archiving/assets/images/fullbody/black_ribbed_maxi_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/black_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/bodycon_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/bride_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/carnival_cloth_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/cherry_red_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/formal_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/fullbody_slimsuit.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/long_mexi_bodycon_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/prom_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/red_dress.jpg',
+      'lib/flows/03_content/archiving/assets/images/fullbody/wedding_dress.jpg',
+    ],
   };
   int selectedNavigationButton = 4;
+  String? selectedImage;
+
+  List<MapEntry<String, String>> get imageEntries => categoryImages.entries
+      .where((entry) => entry.key != 'All')
+      .expand(
+        (entry) =>
+            entry.value.map((imagePath) => MapEntry(entry.key, imagePath)),
+      )
+      .toList();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,14 +157,14 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
                           Column(
                             children: [
                               Text(
-                                'Mr Devesh',
+                                'Mis. Div',
                                 style: TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               Text(
-                                '@mrdevesh',
+                                '@misdiv',
                                 style: TextStyle(
                                   fontSize: 14.0,
                                   fontWeight: FontWeight.bold,
@@ -122,7 +181,7 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
                           Column(
                             children: [
                               Text(
-                                '77',
+                                widget.itemsCount.toString(),
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
@@ -141,7 +200,7 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
                           Column(
                             children: [
                               Text(
-                                '8',
+                                widget.outfitsCount.toString(),
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
@@ -190,26 +249,28 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0,
                   ),
-                  itemCount: categoryImages
-                      .length, // Replace with your actual item count
+                  itemCount: imageEntries.length,
                   itemBuilder: (context, index) {
+                    final imageEntry = imageEntries[index];
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          selectedCategory = categories[index];
+                          selectedCategory = imageEntry.key;
+                          selectedImage = imageEntry.value;
                         });
                       },
                       child: Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8.0),
-                          border: selectedCategory == categories[index]
+                          border: selectedImage == imageEntry.value
                               ? Border.all(color: Colors.blue, width: 3.0)
                               : null,
                         ),
                         child: Center(
                           child: Image.asset(
-                            categoryImages[categories[index]]!,
+                            imageEntry.value,
+                            fit: BoxFit.contain,
                           ), // Replace with your actual item content
                         ),
                       ),
@@ -237,11 +298,14 @@ class _SelectAndArchiveScreenState extends State<SelectAndArchiveScreen> {
             IconButton(
               icon: Icon(
                 Icons.archive_outlined,
-                color: selectedCategory == null ? Colors.grey : Colors.blue,
+                color: selectedImage == null ? Colors.grey : Colors.blue,
               ),
-              onPressed: selectedCategory == null
+              onPressed: selectedImage == null
                   ? null
-                  : () => Navigator.pop(context, selectedCategory),
+                  : () => Navigator.pop(context, {
+                      'category': selectedCategory!,
+                      'image': selectedImage!,
+                    }),
             ),
             IconButton(
               icon: selectedNavigationButton == 1
