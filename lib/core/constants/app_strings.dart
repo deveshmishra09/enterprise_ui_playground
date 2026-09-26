@@ -41,7 +41,7 @@ abstract final class AppStrings {
   static const String footerLegalHeading = 'LEGAL';
   static const String footerCopyrightPrefix =
       '© 2026 EnterpriseUIPlayground.app, Built with ❤️ by Devesh Mishra (';
-  static const String footerCopyrightHandle = '@deveshmishra_09';
+  static const String footerCopyrightHandle = '@devesh_mishra09';
   static const String footerCopyrightSuffix = ')';
 
   // Preview / editor

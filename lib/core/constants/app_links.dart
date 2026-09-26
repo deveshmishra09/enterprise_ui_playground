@@ -1,8 +1,8 @@
 /// External URLs and contact details. Kept in one place so they can be updated
 /// without hunting through widgets.
 abstract final class AppLinks {
-  static const String xHandle = '@deveshmishra_09';
-  static const String xUrl = 'https://x.com/deveshmishra_09';
+  static const String xHandle = '@devesh_mishra09';
+  static const String xUrl = 'https://x.com/devesh_mishra09';
 
   static const String contactEmail = 'devesh09269@gmail.com';
   static String get mailto => 'mailto:$contactEmail';
