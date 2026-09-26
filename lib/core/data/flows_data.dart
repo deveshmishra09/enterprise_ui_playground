@@ -9,6 +9,7 @@ import 'package:enterprise_ui_playground/flows/03_content/copying&dulpicating/sc
 import 'package:enterprise_ui_playground/flows/03_content/deleting&removing/screens/deleting_removing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/drawing/screens/drawing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/editing&updating/screens/editing_updating_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/favouriting&pinning/screens/favouriting_pinning_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -167,7 +168,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'editing-updating', title: 'Editing & Updating', status: SubFlowStatus.built, screenBuilder: _editingUpdatingHomeScreen),
       SubFlow(slug: 'deleting-removing', title: 'Deleting & Removing', status: SubFlowStatus.built, screenBuilder: _deletingRemovingHomeScreen),
       SubFlow(slug: 'archiving', title: 'Archiving', status: SubFlowStatus.built, screenBuilder: _archivingHomeScreen),
-      SubFlow(slug: 'favoriting-pinning', title: 'Favoriting & Pinning'),
+      SubFlow(slug: 'favoriting-pinning', title: 'Favoriting & Pinning', status: SubFlowStatus.built, screenBuilder: _favouritingPinningHomeScreen),
       SubFlow(slug: 'filtering-sorting', title: 'Filtering & Sorting'),
       SubFlow(slug: 'moving', title: 'Moving'),
       SubFlow(slug: 'reordering', title: 'Reordering'),
@@ -308,6 +309,8 @@ Widget _deletingRemovingHomeScreen(BuildContext context) =>
     const DeletingRemovingHomeScreen();
 Widget _archivingHomeScreen(BuildContext context) =>
     const ArchivingHomeScreen();
+Widget _favouritingPinningHomeScreen(BuildContext context) =>
+    const FavouritingPinningHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
