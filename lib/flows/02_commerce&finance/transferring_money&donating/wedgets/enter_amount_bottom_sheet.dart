@@ -148,32 +148,34 @@ class _EnterAmountBottomSheetState extends State<EnterAmountBottomSheet> {
 
                       const SizedBox(width: 14),
 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            widget.receiverName.isNotEmpty
-                                ? widget.receiverName
-                                : 'Receiver Name not available',
-                            style: const TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.receiverName.isNotEmpty
+                                  ? widget.receiverName
+                                  : 'Receiver Name not available',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          Text(
-                            widget.receiverPhoneNumber.isNotEmpty
-                                ? widget.receiverPhoneNumber
-                                : 'Phone number not available',
-                            style: const TextStyle(
-                              fontSize: 15,
-                              color: Colors.white70,
+                            Text(
+                              widget.receiverPhoneNumber.isNotEmpty
+                                  ? widget.receiverPhoneNumber
+                                  : 'Phone number not available',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                color: Colors.white70,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
 
-                      const Spacer(),
+                      const SizedBox(width: 8),
 
                       IconButton(
                         onPressed: () {
