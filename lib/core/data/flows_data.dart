@@ -12,6 +12,7 @@ import 'package:enterprise_ui_playground/flows/03_content/editing&updating/scree
 import 'package:enterprise_ui_playground/flows/03_content/favouriting&pinning/screens/favouriting_pinning_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/filtering&sorting/screens/filtering_sorting_home_scren.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/moving/screens/moving_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -171,7 +172,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'archiving', title: 'Archiving', status: SubFlowStatus.built, screenBuilder: _archivingHomeScreen),
       SubFlow(slug: 'favoriting-pinning', title: 'Favoriting & Pinning', status: SubFlowStatus.built, screenBuilder: _favouritingPinningHomeScreen),
       SubFlow(slug: 'filtering-sorting', title: 'Filtering & Sorting', status: SubFlowStatus.built, screenBuilder: _filteringSortingHomeScreen),
-      SubFlow(slug: 'moving', title: 'Moving'),
+      SubFlow(slug: 'moving', title: 'Moving', status: SubFlowStatus.built, screenBuilder: _movingHomeScreen),
       SubFlow(slug: 'reordering', title: 'Reordering'),
       SubFlow(slug: 'saving-to-collection', title: 'Saving to Collection'),
       SubFlow(slug: 'searching-finding', title: 'Searching & Finding'),
@@ -314,6 +315,8 @@ Widget _favouritingPinningHomeScreen(BuildContext context) =>
     const FavouritingPinningHomeScreen();
 Widget _filteringSortingHomeScreen(BuildContext context) =>
     const FilteringSortingHomeScreen();
+Widget _movingHomeScreen(BuildContext context) =>
+    const MovingHomeScreen(); 
 
 // --- Lookups -------------------------------------------------------------
 
