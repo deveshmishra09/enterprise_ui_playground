@@ -68,7 +68,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/logo.png
+    - assets/images/
     - assets/images/background.png
     - lib/flows/01_account_management/login/assets/images/background.png
     - lib/flows/01_account_management/edit_profile/assets/images/profile.jpg
@@ -95,6 +95,11 @@ flutter:
     - lib/flows/03_content/archiving/assets/images/footwear/
     - lib/flows/03_content/archiving/assets/images/fullbody/
     - lib/flows/03_content/archiving/assets/images/tops/
+    - lib/flows/03_content/selecting&choosing/assets/images/rice/
+    - lib/flows/03_content/selecting&choosing/assets/images/beans/
+    - lib/flows/03_content/selecting&choosing/assets/images/top_things_off/
+    - lib/flows/03_content/selecting&choosing/assets/images/drinks/
+    - lib/flows/03_content/selecting&choosing/assets/images/protein_or_veggie/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
