@@ -16,6 +16,7 @@ import 'package:enterprise_ui_playground/flows/03_content/moving/screens/moving_
 import 'package:enterprise_ui_playground/flows/03_content/reordering/screens/reordering_home_scree.dart';
 import 'package:enterprise_ui_playground/flows/03_content/saving_to_collection/screens/saving_to_collection_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/searching&finding/screens/searching_finding_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/selecting&choosing/screens/selecting_and_choosing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -179,7 +180,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'reordering', title: 'Reordering', status: SubFlowStatus.built, screenBuilder: _reorderingHomeScreen),
       SubFlow(slug: 'saving-to-collection', title: 'Saving to Collection', status: SubFlowStatus.built, screenBuilder: _savingToCollectionHomeScreen),
       SubFlow(slug: 'searching-finding', title: 'Searching & Finding', status: SubFlowStatus.built, screenBuilder: _searchingFindingHomeScreen),
-      SubFlow(slug: 'selecting-choosing', title: 'Selecting & Choosing'),
+      SubFlow(slug: 'selecting-choosing', title: 'Selecting & Choosing', status: SubFlowStatus.built, screenBuilder: _selectingChoosingHomeScreen),
       SubFlow(slug: 'listening-to-audio', title: 'Listening to Audio'),
       SubFlow(slug: 'recording-audio-video', title: 'Recording Audio & Video'),
       SubFlow(slug: 'scanning', title: 'Scanning'),
@@ -326,6 +327,8 @@ Widget _savingToCollectionHomeScreen(BuildContext context) =>
     const SavingToCollectionHomeScreen();
 Widget _searchingFindingHomeScreen(BuildContext context) =>
     const SearchingFindingHomeScreen();
+Widget _selectingChoosingHomeScreen(BuildContext context) =>
+    const SelectingAndChoosingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
