@@ -100,6 +100,7 @@ class _SelectingAndChoosingHomeScreenState
                           MaterialPageRoute(
                             builder: (context) => NutritionScreen(
                               dishName: DishesNameString.allDishes[index],
+                              dishImagePath: DishesImagePath.allDishesImagePaths[index],
                             ),
                           ),
                         );
