@@ -9,9 +9,14 @@ import 'package:enterprise_ui_playground/flows/03_content/selecting&choosing/wid
 import 'package:flutter/material.dart';
 
 class NutritionScreen extends StatefulWidget {
-  const NutritionScreen({super.key, required this.dishName});
+  const NutritionScreen({
+    super.key,
+    required this.dishName,
+    required this.dishImagePath,
+  });
 
   final String dishName;
+  final String dishImagePath;
 
   @override
   State<NutritionScreen> createState() => _NutritionScreenState();
@@ -132,13 +137,16 @@ class _NutritionScreenState extends State<NutritionScreen> {
                           width: 200,
                           height: 200,
                           child: Image.asset(
-                            DishesImagePath.allDishesImagePaths[0],
+                            widget.dishImagePath,
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ],
                     ),
                   ],
                 ),
+
+                const SizedBox(height: 20),
 
                 // PROTEIN OR VEGGIE
                 Text(
