@@ -15,6 +15,7 @@ import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/sc
 import 'package:enterprise_ui_playground/flows/03_content/moving/screens/moving_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/reordering/screens/reordering_home_scree.dart';
 import 'package:enterprise_ui_playground/flows/03_content/saving_to_collection/screens/saving_to_collection_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/searching&finding/screens/searching_finding_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -177,7 +178,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'moving', title: 'Moving', status: SubFlowStatus.built, screenBuilder: _movingHomeScreen),
       SubFlow(slug: 'reordering', title: 'Reordering', status: SubFlowStatus.built, screenBuilder: _reorderingHomeScreen),
       SubFlow(slug: 'saving-to-collection', title: 'Saving to Collection', status: SubFlowStatus.built, screenBuilder: _savingToCollectionHomeScreen),
-      SubFlow(slug: 'searching-finding', title: 'Searching & Finding'),
+      SubFlow(slug: 'searching-finding', title: 'Searching & Finding', status: SubFlowStatus.built, screenBuilder: _searchingFindingHomeScreen),
       SubFlow(slug: 'selecting-choosing', title: 'Selecting & Choosing'),
       SubFlow(slug: 'listening-to-audio', title: 'Listening to Audio'),
       SubFlow(slug: 'recording-audio-video', title: 'Recording Audio & Video'),
@@ -323,6 +324,8 @@ Widget _reorderingHomeScreen(BuildContext context) =>
     const ReorderingHomeScreen();
 Widget _savingToCollectionHomeScreen(BuildContext context) =>
     const SavingToCollectionHomeScreen();
+Widget _searchingFindingHomeScreen(BuildContext context) =>
+    const SearchingFindingHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 

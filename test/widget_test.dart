@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +9,7 @@ import 'package:enterprise_ui_playground/core/data/flows_data.dart';
 import 'package:enterprise_ui_playground/core/models/sub_flow.dart';
 import 'package:enterprise_ui_playground/core/theme/theme_controller.dart';
 import 'package:enterprise_ui_playground/core/widgets/site_header.dart';
+import 'package:enterprise_ui_playground/flows/03_content/searching&finding/screens/searching_finding_home_screen.dart';
 
 void main() {
   // Don't try to fetch fonts over the network during tests.
@@ -73,5 +75,21 @@ void main() {
 
     expect(find.byType(SiteHeader), findsOneWidget);
     expect(find.text(AppStrings.siteName), findsOneWidget);
+  });
+
+  testWidgets('search filters the visible products by query', (tester) async {
+    await tester.pumpWidget(const MaterialApp(
+      home: SearchingFindingHomeScreen(),
+    ));
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('Wonder Bread'), findsOneWidget);
+    expect(find.textContaining('Doritos Nacho Cheese'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), 'doritos');
+    await tester.pump();
+
+    expect(find.textContaining('Doritos Nacho Cheese'), findsOneWidget);
+    expect(find.textContaining('Wonder Bread'), findsNothing);
   });
 }
