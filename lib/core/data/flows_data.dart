@@ -12,6 +12,7 @@ import 'package:enterprise_ui_playground/flows/03_content/editing&updating/scree
 import 'package:enterprise_ui_playground/flows/03_content/favouriting&pinning/screens/favouriting_pinning_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/filtering&sorting/screens/filtering_sorting_home_scren.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/listening_to_audio/screens/listening_to_audio_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/moving/screens/moving_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/reordering/screens/reordering_home_scree.dart';
 import 'package:enterprise_ui_playground/flows/03_content/saving_to_collection/screens/saving_to_collection_home_screen.dart';
@@ -181,7 +182,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'saving-to-collection', title: 'Saving to Collection', status: SubFlowStatus.built, screenBuilder: _savingToCollectionHomeScreen),
       SubFlow(slug: 'searching-finding', title: 'Searching & Finding', status: SubFlowStatus.built, screenBuilder: _searchingFindingHomeScreen),
       SubFlow(slug: 'selecting-choosing', title: 'Selecting & Choosing', status: SubFlowStatus.built, screenBuilder: _selectingChoosingHomeScreen),
-      SubFlow(slug: 'listening-to-audio', title: 'Listening to Audio'),
+      SubFlow(slug: 'listening-to-audio', title: 'Listening to Audio', status: SubFlowStatus.built, screenBuilder: _listeningToAudioHomeScreen),
       SubFlow(slug: 'recording-audio-video', title: 'Recording Audio & Video'),
       SubFlow(slug: 'scanning', title: 'Scanning'),
       SubFlow(slug: 'taking-photos', title: 'Taking Photos'),
@@ -329,6 +330,8 @@ Widget _searchingFindingHomeScreen(BuildContext context) =>
     const SearchingFindingHomeScreen();
 Widget _selectingChoosingHomeScreen(BuildContext context) =>
     const SelectingAndChoosingHomeScreen();
+Widget _listeningToAudioHomeScreen(BuildContext context) =>
+    const ListeningToAudioHomeScreen();
 
 // --- Lookups -------------------------------------------------------------
 
