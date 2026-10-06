@@ -17,6 +17,7 @@ import 'package:enterprise_ui_playground/flows/03_content/moving/screens/moving_
 import 'package:enterprise_ui_playground/flows/03_content/recording_audio_and_video/screens/recording_audio_and_video_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/reordering/screens/reordering_home_scree.dart';
 import 'package:enterprise_ui_playground/flows/03_content/saving_to_collection/screens/saving_to_collection_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/scanning/screens/scanning_home_scree.dart';
 import 'package:enterprise_ui_playground/flows/03_content/searching&finding/screens/searching_finding_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/selecting&choosing/screens/selecting_and_choosing_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
@@ -185,7 +186,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'selecting-choosing', title: 'Selecting & Choosing', status: SubFlowStatus.built, screenBuilder: _selectingChoosingHomeScreen),
       SubFlow(slug: 'listening-to-audio', title: 'Listening to Audio', status: SubFlowStatus.built, screenBuilder: _listeningToAudioHomeScreen),
       SubFlow(slug: 'recording-audio-video', title: 'Recording Audio & Video', status: SubFlowStatus.built, screenBuilder: _recordingAudioVideoHomeScreen),
-      SubFlow(slug: 'scanning', title: 'Scanning'),
+      SubFlow(slug: 'scanning', title: 'Scanning', status: SubFlowStatus.built, screenBuilder: _scanningHomeScreen),
       SubFlow(slug: 'taking-photos', title: 'Taking Photos'),
       SubFlow(slug: 'watching-video', title: 'Watching Video'),
       SubFlow(slug: 'logging-tracking', title: 'Logging & Tracking'),
@@ -335,7 +336,8 @@ Widget _listeningToAudioHomeScreen(BuildContext context) =>
     const ListeningToAudioHomeScreen();
 Widget _recordingAudioVideoHomeScreen(BuildContext context) =>
     const RecordingAudioAndVideoHomeScreen();
-
+Widget _scanningHomeScreen(BuildContext context) =>
+    const ScanningHomeScreen();
 // --- Lookups -------------------------------------------------------------
 
 AppFlow? flowBySlug(String slug) {
