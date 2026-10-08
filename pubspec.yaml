@@ -110,6 +110,11 @@ flutter:
     - lib/flows/03_content/listening_to_audio/assets/images/
     - lib/flows/03_content/listening_to_audio/assets/images/song_posters/
     - lib/flows/03_content/listening_to_audio/assets/audio/
+    - lib/flows/03_content/watching_video/assets/videos/birds_video_1_compatible.mp4
+    - lib/flows/03_content/watching_video/assets/videos/birds_video_2_compatible.mp4
+    - lib/flows/03_content/watching_video/assets/videos/birds_video_3_compatible.mp4
+    - lib/flows/03_content/watching_video/assets/images/
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
