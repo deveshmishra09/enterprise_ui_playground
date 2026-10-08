@@ -1,4 +1,6 @@
+import 'package:enterprise_ui_playground/flows/03_content/taking_photos/screens/tp_camera_capture_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/taking_photos/widgets/tp_gallery_bottom_sheet.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -32,21 +34,33 @@ class _TPEditButtonBottomSheetState extends State<TPEditButtonBottomSheet> {
                 child: ListTile(
                   title: const Center(child: Text('Take photo')),
                   onTap: () async {
-                    debugPrint("Take photo button clicked!"); // Check your terminal for this!
                     try {
-                      final XFile? pickedFile = await _picker.pickImage(
-                        source: ImageSource.camera,
-                        preferredCameraDevice: CameraDevice.front,
-                        imageQuality: 80,
-                      );
-
-                      if (pickedFile != null && context.mounted) {
-                        Navigator.pop(context, pickedFile.path);
+                      final String? photoPath;
+                      if (kIsWeb) {
+                        photoPath = await Navigator.push<String>(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const TPCameraCaptureScreen(),
+                          ),
+                        );
+                      } else {
+                        final pickedFile = await _picker.pickImage(
+                          source: ImageSource.camera,
+                          preferredCameraDevice: CameraDevice.front,
+                          imageQuality: 80,
+                        );
+                        photoPath = pickedFile?.path;
                       }
-                    } catch (e) {
-                      debugPrint("CRITICAL CAMERA ERROR: $e");
-                      // If it errors out (e.g. on simulator), close the sheet so it doesn't freeze
-                      if (context.mounted) Navigator.pop(context);
+
+                      if (photoPath != null && context.mounted) {
+                        Navigator.pop(context, photoPath);
+                      }
+                    } catch (error, stackTrace) {
+                      debugPrint('Camera error: $error');
+                      debugPrintStack(stackTrace: stackTrace);
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                      }
                     }
                   },
                 ),
