@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:enterprise_ui_playground/flows/03_content/taking_photos/utils/tp_local_image_provider.dart';
 import 'package:flutter/material.dart';
 
 class TPProfileImage extends StatefulWidget {
@@ -26,9 +25,7 @@ class _TPProfileImageState extends State<TPProfileImage> {
           Positioned.fill(
             child: ClipOval(
               child: Image(
-                image: widget.imageUrl.startsWith('lib/')
-                    ? AssetImage(widget.imageUrl)
-                    : FileImage(File(widget.imageUrl)),
+                image: localImageProvider(widget.imageUrl),
                 fit: BoxFit.cover,
               ),
             ),
