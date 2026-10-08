@@ -46,7 +46,7 @@ class _WatchingVideoHomeScreenState extends State<WatchingVideoHomeScreen> {
                     ),
                   ),
                   child: Image.asset(
-                    'assets/images/dashboard_hero.jpg', // Your absolute local path reference
+                    'lib/flows/03_content/watching_video/assets/images/background_img.avif', // Your absolute local path reference
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -60,7 +60,7 @@ class _WatchingVideoHomeScreenState extends State<WatchingVideoHomeScreen> {
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
-                          'Enterprise UI Playground',
+                          'Birds Gallery',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
@@ -77,10 +77,10 @@ class _WatchingVideoHomeScreenState extends State<WatchingVideoHomeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: _buildCategoryTabs([
-                          'Shows',
-                          'Movies',
-                          'Sports',
-                          'News',
+                          'Songbirds',
+                          'Waterfowl',
+                          'Landfowl',
+                          'Seabirds',
                         ]),
                       ),
                     ],
@@ -175,7 +175,7 @@ class _WatchingVideoHomeScreenState extends State<WatchingVideoHomeScreen> {
                       const SizedBox(height: 4),
                       // Subtitle update matching new branding requirements
                       const Text(
-                        'Exclusively on Enterprise UI Playground',
+                        'Exclusively on Birds Gallery',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
