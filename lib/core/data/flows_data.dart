@@ -20,6 +20,7 @@ import 'package:enterprise_ui_playground/flows/03_content/saving_to_collection/s
 import 'package:enterprise_ui_playground/flows/03_content/scanning/screens/scanning_home_scree.dart';
 import 'package:enterprise_ui_playground/flows/03_content/searching&finding/screens/searching_finding_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/selecting&choosing/screens/selecting_and_choosing_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/taking_photos/screens/taking_photos_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/uploading&downloading/screens/uploading_downloading_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -187,7 +188,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'listening-to-audio', title: 'Listening to Audio', status: SubFlowStatus.built, screenBuilder: _listeningToAudioHomeScreen),
       SubFlow(slug: 'recording-audio-video', title: 'Recording Audio & Video', status: SubFlowStatus.built, screenBuilder: _recordingAudioVideoHomeScreen),
       SubFlow(slug: 'scanning', title: 'Scanning', status: SubFlowStatus.built, screenBuilder: _scanningHomeScreen),
-      SubFlow(slug: 'taking-photos', title: 'Taking Photos'),
+      SubFlow(slug: 'taking-photos', title: 'Taking Photos', status: SubFlowStatus.built, screenBuilder: _takingPhotosHomeScreen),
       SubFlow(slug: 'watching-video', title: 'Watching Video'),
       SubFlow(slug: 'logging-tracking', title: 'Logging & Tracking'),
       SubFlow(slug: 'marking', title: 'Marking'),
@@ -338,6 +339,8 @@ Widget _recordingAudioVideoHomeScreen(BuildContext context) =>
     const RecordingAudioAndVideoHomeScreen();
 Widget _scanningHomeScreen(BuildContext context) =>
     const ScanningHomeScreen();
+Widget _takingPhotosHomeScreen(BuildContext context) =>
+    const TakingPhotosHomeScreen();
 // --- Lookups -------------------------------------------------------------
 
 AppFlow? flowBySlug(String slug) {
