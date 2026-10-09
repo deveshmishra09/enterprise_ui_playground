@@ -46,7 +46,7 @@ class _WatchingVideoHomeScreenState extends State<WatchingVideoHomeScreen> {
                     ),
                   ),
                   child: Image.asset(
-                    'lib/flows/03_content/watching_video/assets/images/background_img.avif', // Your absolute local path reference
+                    'lib/flows/03_content/watching_video/assets/images/background.jpg', // Your absolute local path reference
                     fit: BoxFit.cover,
                   ),
                 ),
