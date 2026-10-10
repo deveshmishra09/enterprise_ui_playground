@@ -13,6 +13,7 @@ import 'package:enterprise_ui_playground/flows/03_content/favouriting&pinning/sc
 import 'package:enterprise_ui_playground/flows/03_content/filtering&sorting/screens/filtering_sorting_home_scren.dart';
 import 'package:enterprise_ui_playground/flows/03_content/importing&exporting/screens/import_export_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/listening_to_audio/screens/listening_to_audio_home_screen.dart';
+import 'package:enterprise_ui_playground/flows/03_content/logging_and_tracking/screens/logging_and_tracking_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/moving/screens/moving_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/recording_audio_and_video/screens/recording_audio_and_video_home_screen.dart';
 import 'package:enterprise_ui_playground/flows/03_content/reordering/screens/reordering_home_scree.dart';
@@ -191,7 +192,7 @@ const List<AppFlow> kAllFlows = <AppFlow>[
       SubFlow(slug: 'scanning', title: 'Scanning', status: SubFlowStatus.built, screenBuilder: _scanningHomeScreen),
       SubFlow(slug: 'taking-photos', title: 'Taking Photos', status: SubFlowStatus.built, screenBuilder: _takingPhotosHomeScreen),
       SubFlow(slug: 'watching-video', title: 'Watching Video', status : SubFlowStatus.built, screenBuilder: _watchingVideoHomeScreen),
-      SubFlow(slug: 'logging-tracking', title: 'Logging & Tracking'),
+      SubFlow(slug: 'logging-tracking', title: 'Logging & Tracking', status: SubFlowStatus.built, screenBuilder: _loggingAndTrackingHomeScreen),
       SubFlow(slug: 'marking', title: 'Marking'),
       SubFlow(slug: 'publishing', title: 'Publishing'),
       SubFlow(slug: 'starting-completing', title: 'Starting & Completing'),
@@ -343,7 +344,9 @@ Widget _scanningHomeScreen(BuildContext context) =>
 Widget _takingPhotosHomeScreen(BuildContext context) =>
     const TakingPhotosHomeScreen();
 Widget _watchingVideoHomeScreen(BuildContext context) =>
-    const WatchingVideoHomeScreen();  
+    const WatchingVideoHomeScreen();
+Widget _loggingAndTrackingHomeScreen(BuildContext context) =>
+    const LoggingAndTrackingHomeScreen();  
 // --- Lookups -------------------------------------------------------------
 
 AppFlow? flowBySlug(String slug) {

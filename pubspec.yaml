@@ -114,6 +114,7 @@ flutter:
     - lib/flows/03_content/watching_video/assets/videos/birds_video_2_compatible.mp4
     - lib/flows/03_content/watching_video/assets/videos/birds_video_3_compatible.mp4
     - lib/flows/03_content/watching_video/assets/images/
+    - lib/flows/03_content/logging_and_tracking/assets/images/
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
