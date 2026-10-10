@@ -34,18 +34,25 @@ class _Screen11State extends State<Screen11> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
+          padding: const EdgeInsets.all(15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(flex: 1),
 
               // 1. Central Petal/Flower Motif Streak Logo Illustration
-              WidgetAnimator(
-                child: CustomPaint(
-                  size: const Size(90, 90),
-                  painter: PetalLogoPainter(),
-                ),
+              Row(
+                children: [
+                  Expanded(
+                    child: WidgetAnimator(
+                      child: CustomPaint(
+                        size: const Size(90, 90),
+                        painter: PetalLogoPainter(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 36),
 
